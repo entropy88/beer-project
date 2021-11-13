@@ -1,0 +1,8 @@
+.beerContainer{
+    margin: auto;
+    display: flex;
+    max-width: 90%;
+    justify-content: space-between;
+    background-color: red;
+    flex-wrap: wrap;
+}

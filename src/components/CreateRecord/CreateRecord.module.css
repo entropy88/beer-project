@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
+
+
+.createForm{
+    background-color: red;
+    display: flex;
+    max-width: 60%;
+    padding:32px;
+    border-radius: 16px;
+    margin: auto;
+    flex-direction: column;
+}
+
+.stars{
+    display: flex;
+}
+
+.checked {
+    color: orange;
+  }
+
+button{
+    font-family: 'Lobster', serif;
+}

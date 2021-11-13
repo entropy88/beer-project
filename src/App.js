@@ -7,7 +7,7 @@ function App() {
     <div className="App"> 
     
       <header className="mainHeader">
-        <img src="./beer.JPG"  className="headerImg" alt="beer"></img>
+        <img src="Beer-icon.png"  className="headerImg" alt="beer"></img>
         <h1>Бирометър</h1>
     
       </header>

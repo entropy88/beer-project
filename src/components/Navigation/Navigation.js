@@ -14,15 +14,13 @@ export default function Navigation() {
         <nav>
             <ul className={styles.topNav}>
                 <li><Link to="/">Начало</Link></li>
+           
                 <li><Link to="/login">Вход</Link></li>
                 <li><Link to="/register">Регистрация</Link></li>
                 <li><Link to="/profile">Профил</Link></li>
                 <li><Link to="/create">Добави бира</Link></li>
             </ul>
-          </nav>
-      
-
-      <hr />
+          </nav>      
 
       <Routes>
       <Route path='/' element={<Home/>} />

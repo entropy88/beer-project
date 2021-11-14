@@ -2,18 +2,14 @@ import { useState } from "react";
 import styles from "./Login.module.css"
 
 function Login() {
-    const [inputs, setInputs] = useState({});
+  const [user, setUser] = useState("");
 
-    const handleChange = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setInputs(values => ({...values, [name]: value}))
-    }
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      alert(inputs);
-    }
+  function onLogin(){
+    setUser("someUser");
+    console.log(user)
+  }
+
+   
   
     return (
       <div className={styles.form}>
@@ -35,7 +31,7 @@ function Login() {
       </div>
 
      
-      <button type="submit" >submit</button>
+      <button onClick={onLogin} >Вход</button>
     </div>
     );
   }

@@ -3,22 +3,57 @@
 
 
 .createForm{
-    background-color: red;
-    display: flex;
+   
+   display: flex;
     max-width: 60%;
-    padding:32px;
-    border-radius: 16px;
-    margin: auto;
+    margin:16px auto;
     flex-direction: column;
+    background-color: #C96E12;
+    padding:24px;
+    border-radius: 24px;
+    border: 1px solid rgb(100, 100, 100);
+    color:white;
 }
+
+.createSelect{
+    background-color: #FFF897;
+    font-size: 18px;
+    padding: 16px;
+   border:none;
+   border-radius: 12px;
+   color:rgb(100, 100, 100);
+}
+
+
+
+.createInput{
+    background-color: #FFF897;
+    font-size: 18px;
+    padding: 16px;
+   border:none;
+   border-radius: 12px;
+   color:rgb(100, 100, 100);
+}
+
+.createLabel{
+    margin-top: 16px;
+    margin-bottom:8px;
+    text-align: center;
+}
+
+.packaging{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.packaging_item{
+    flex-basis: 30%;
+ }
 
 .stars{
     display: flex;
 }
-
-.checked {
-    color: orange;
-  }
 
 button{
     font-family: 'Lobster', serif;

@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box;
+}
+
+.beerWrapper{
+   width: 80%;
+   margin:16px auto;
+   display: flex;
+}
+
+.imgWrapper {
+    flex-basis: 50%;
+}
+
+.imgWrapper img{
+    max-width: 100%;
+}
+
+.beerContent{
+    color:#4F5054;
+   padding-left:24px;
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.beerContentRow{
+    display: flex;
+    align-items: center;
+}
+.beerContentLabel{
+    font-weight: bold;
+    line-height: 2rem;
+    padding-right: 1rem;
+}

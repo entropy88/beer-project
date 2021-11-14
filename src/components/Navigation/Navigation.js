@@ -5,6 +5,7 @@ import Profile from "../Profile/Profile";
 import CreateRecord from "../CreateRecord/CreateRecord";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
+import BeerDetails from "../BeerDetails/BeerDetails"
 import styles from "./Navigation.module.css"
 
 
@@ -19,6 +20,7 @@ export default function Navigation() {
                 <li><Link to="/register">Регистрация</Link></li>
                 <li><Link to="/profile">Профил</Link></li>
                 <li><Link to="/create">Добави бира</Link></li>
+                <li><Link to="/details">Bира</Link></li>
             </ul>
           </nav>      
 
@@ -28,6 +30,7 @@ export default function Navigation() {
       <Route path='/login' element={<Login/>}/>
         <Route path='/profile' element={<Profile />}/> 
         <Route path='/create' element={<CreateRecord/>}/>
+        <Route path='/details' element={<BeerDetails/>}/>
              </Routes>
     </Router>
   );

@@ -10,6 +10,8 @@ function CreateRecord() {
        <label className={styles.createLabel} for="beerPicture">Изображение:</label>
        <input  className={styles.createInput} type="text" id="beerPicture" name="beerPicture"></input>
 
+
+
        <label className={styles.createLabel} for="beerTypes">Тип:</label>
 
 <select className={styles.createSelect} name="beerTypes" id="beerTypes">
@@ -17,6 +19,15 @@ function CreateRecord() {
   <option value="lager">Светла</option>
   <option value="weiss">Вайс</option>
  </select> 
+
+ <label className={styles.createLabel} for="beerОригин">Произход:</label>
+ <select className={styles.createSelect} name="beerOrigin" id="beerOrigin">
+  <option value="local">България</option>
+  <option value="foreign">Внос</option>
+ </select> 
+
+ <label className={styles.createLabel} for="alcoholicContent">Алкохолно съдържание:</label>
+ <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"></input>
 
  <label className={styles.createLabel} for="beerPackage">Опаковки:</label>
 <article className={styles.packaging}>

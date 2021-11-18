@@ -11,7 +11,7 @@ import styles from "./Navigation.module.css"
 
 export default function Navigation() {
   return (
-    <Router>
+  
         <nav>
             <ul className={styles.topNav}>
                 <li><Link to="/">Начало</Link></li>
@@ -19,19 +19,11 @@ export default function Navigation() {
                 <li><Link to="/login">Вход</Link></li>
                 <li><Link to="/register">Регистрация</Link></li>
                 <li><Link to="/profile">Профил</Link></li>
-                <li><Link to="/create">Добави бира</Link></li>
-                <li><Link to="/details">Bира</Link></li>
+                <li><Link to="/create-record">Добави бира</Link></li>
+                <li><Link to="/beers/:beerId">Bира</Link></li>
             </ul>
           </nav>      
 
-      <Routes>
-      <Route path='/' element={<Home/>} />
-      <Route path='/register' element={<Register/>}/>
-      <Route path='/login' element={<Login/>}/>
-        <Route path='/profile' element={<Profile />}/> 
-        <Route path='/create' element={<CreateRecord/>}/>
-        <Route path='/details' element={<BeerDetails/>}/>
-             </Routes>
-    </Router>
+     
   );
 }

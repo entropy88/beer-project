@@ -1,4 +1,5 @@
-import styles from "./BeerCard.module.css"
+import styles from "./BeerCard.module.css";
+import {Link} from 'react-router-dom';
 
 function BeerCard({beer}) {
 
@@ -18,6 +19,7 @@ function BeerCard({beer}) {
           }
        </p>
      <p>Рейтинг: {beer.rating}</p>
+     <Link to={`/beers/${beer._id}`} className="details-button">Details</Link>
      <button>Детайли</button>
      </article>
      </>

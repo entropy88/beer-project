@@ -19,8 +19,7 @@ export default function Navigation() {
                 <li><Link to="/login">Вход</Link></li>
                 <li><Link to="/register">Регистрация</Link></li>
                 <li><Link to="/profile">Профил</Link></li>
-                <li><Link to="/create-record">Добави бира</Link></li>
-                <li><Link to="/beers/:beerId">Bира</Link></li>
+                <li><Link to="/create-record">Добави бира</Link></li>               
             </ul>
           </nav>      
 

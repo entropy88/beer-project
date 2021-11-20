@@ -1,9 +1,29 @@
 import styles from "./CreateRecord.module.css"
 
 function CreateRecord() {
+
+
+  const onBeerCreate = (e) => {
+    e.preventDefault();
+    let formData = new FormData(e.currentTarget);
+
+    let title = formData.get('beerName');
+    let imgUrl = formData.get('beerPicture');
+    let alcVol=formData.get('alcoholicContent');
+
+    const newBeer={
+      title,imgUrl,alcVol
+    }
+
+    console.log(newBeer)
+
+
+
+}
+
     return (
       <>
-       <form id="beer_form" className={styles.createForm}>
+       <form id="beer_form" className={styles.createForm}  onSubmit={onBeerCreate} method="POST">
        <label className={styles.createLabel}  for="beerName">Марка:</label>
        <input className={styles.createInput} type="text" id="beerName" name="beerName"></input>
 
@@ -20,7 +40,7 @@ function CreateRecord() {
   <option value="weiss">Вайс</option>
  </select> 
 
- <label className={styles.createLabel} for="beerОригин">Произход:</label>
+ <label className={styles.createLabel} for="beerOrigin">Произход:</label>
  <select className={styles.createSelect} name="beerOrigin" id="beerOrigin">
   <option value="local">България</option>
   <option value="foreign">Внос</option>

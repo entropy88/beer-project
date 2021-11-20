@@ -3,10 +3,18 @@
 }
 
 .beerWrapper{
-   width: 80%;
-   margin:16px auto;
-   display: flex;
-   flex-direction: column;
+    width: 80%;
+    margin: 16px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 28%;
+    background-color: white;
+    padding:24px;
+    border-radius: 24px;
+    border: 1px solid rgb(100, 100, 100);
+    color:rgb(100, 100, 100);
 }
 
 .imgWrapper {
@@ -25,12 +33,21 @@
     flex-direction: column;
 }
 
+
+
 .beerContentRow{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .beerContentLabel{
     font-weight: bold;
     line-height: 2rem;
     padding-right: 1rem;
+}
+
+.packages{
+    background-color: #C96E12;
+    color:#FFF897;
+    margin-right: 4px;
 }

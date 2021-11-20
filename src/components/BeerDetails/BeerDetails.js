@@ -11,7 +11,10 @@ const BeerDetails = ({
         console.log(result)
 
         setBeer(result);
+     
     }, []);
+
+    
 
     return (
         <section className={styles.beerWrapper}>
@@ -22,10 +25,29 @@ const BeerDetails = ({
                     </article>
 
                     <article className={styles.beerContent}>
-                    <p className="type">{beer.type}</p>
+
+                        <article className={styles.beerContentRow}>
+                        <label className={styles.beerContentLabel}>Тип: </label>
+                        <p>{beer.type}</p>
+                        </article>
+
+                        <article className={styles.beerContentRow}>
+                        <label className={styles.beerContentLabel}>Алкохолно съдържание: </label>
+                        <p>{beer.alcVol}</p>
+                        </article>
+                 
+                        <article className={styles.beerContentRow}>
+                        <label className={styles.beerContentLabel}>Рейтинг: </label>
+                        <p>{beer.rating}</p>
+                        </article>
+                 
+                        <article className={styles.beerContentRow}>
+                        <label className={styles.beerContentLabel}>Опаковки: </label>
+                      <p>{beer.packages}</p>
+                        </article>
+                 
               
-                <p>Rating:{beer.rating}</p>
-                <p>Packages{beer.packages}</p>
+           
                 </article>
               
                 <div >

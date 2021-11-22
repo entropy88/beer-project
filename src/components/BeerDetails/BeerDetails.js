@@ -45,6 +45,11 @@ const BeerDetails = ({
                         <label className={styles.beerContentLabel}>Опаковки: </label>
                       <p>{beer.packages}</p>
                         </article>
+
+                        <article className={styles.beerContentRow}>
+                        <label className={styles.beerContentLabel}>Произход: </label>
+                      <p>{beer.country}</p>
+                        </article>
                  
               
            

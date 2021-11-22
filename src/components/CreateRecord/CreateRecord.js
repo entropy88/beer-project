@@ -1,4 +1,5 @@
-import styles from "./CreateRecord.module.css"
+import styles from "./CreateRecord.module.css";
+import * as beerService from "../../services/beer";
 
 function CreateRecord() {
 
@@ -7,19 +8,33 @@ function CreateRecord() {
     e.preventDefault();
     let formData = new FormData(e.currentTarget);
 
-    let title = formData.get('beerName');
+    let title = formData.get('beerName');   
     let imgUrl = formData.get('beerPicture');
+    let type = formData.get('beerTypes');
+    let country=formData.get('beerOrigin');
     let alcVol=formData.get('alcoholicContent');
 
-    const newBeer={
-      title,imgUrl,alcVol
-    }
+   
+  
+    
 
-    console.log(newBeer)
+    beerService.create({
+       title,      
+        imgUrl,
+        type,
+        country,
+        alcVol,
+         //dummy
+       packages:"[0.5, 1]",
+       rating: "[3]"
 
 
-
+    })
+        .then(result => {
+          console.log(result._id+ "new")
+        })
 }
+
 
     return (
       <>
@@ -42,8 +57,8 @@ function CreateRecord() {
 
  <label className={styles.createLabel} for="beerOrigin">Произход:</label>
  <select className={styles.createSelect} name="beerOrigin" id="beerOrigin">
-  <option value="local">България</option>
-  <option value="foreign">Внос</option>
+  <option value="България">България</option>
+  <option value="Внос">Внос</option>
  </select> 
 
  <label className={styles.createLabel} for="alcoholicContent">Алкохолно съдържание:</label>

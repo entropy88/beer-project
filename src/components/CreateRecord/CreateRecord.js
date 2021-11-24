@@ -1,7 +1,19 @@
 import styles from "./CreateRecord.module.css";
+import { useState } from "react";
 import * as beerService from "../../services/beer";
 
+import Error from "../Error/Error";
+import { Redirect } from "react-router";
+
 function CreateRecord() {
+ 
+  const [errors, setErrors] = useState([]);
+
+  function onErrors(error){
+    setErrors(oldArray => [...oldArray, error]);
+    console.log(errors)
+  }
+
 
 
   const onBeerCreate = (e) => {
@@ -14,9 +26,21 @@ function CreateRecord() {
     let country=formData.get('beerOrigin');
     let alcVol=formData.get('alcoholicContent');
 
-   
-  
+   //validation
+    if (title.length<3){
+      onErrors("Title must be atleast 3 characters!")
+    }
+
+    const urlPattern=new RegExp (/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/);
+
+    if (!urlPattern.test(imgUrl)){
+      onErrors("Please use valid url")
+    }
     
+    if (errors.length<1){
+    
+      //clean up
+      setErrors(oldArray => [...oldArray, '']);
 
     beerService.create({
        title,      
@@ -31,9 +55,13 @@ function CreateRecord() {
 
     })
         .then(result => {
-          console.log(result._id+ "new")
+          console.log(result._id+ "new");
+          //HMMMM...
+        <Redirect to="/" />
+     
         })
-}
+} 
+  }
 
 
     return (
@@ -110,6 +138,8 @@ function CreateRecord() {
 <button type="submit" id="submitBeer">Запази</button>
 
        </form>
+
+       {errors.length>0?<Error errors={errors}/>:<p>it's all good</p>}
       </>
     );
   }

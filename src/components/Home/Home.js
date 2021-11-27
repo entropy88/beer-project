@@ -12,13 +12,10 @@ function Home() {
     useEffect(() => {        
             beerService.getAll()
                 .then(result => {
-                  console.log(result)
                     setBeers(result);
                 })
           }, []);
-
-    console.log(beers)
-
+ 
     return (
       <>
  

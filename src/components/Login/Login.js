@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styles from "./Login.module.css"
-import {getUser} from "../../services/auth"
+import {getUser} from "../../services/auth";
+import { useNavigate } from 'react-router-dom';
 
  function Login() {
+  const navigate = useNavigate();
 
  async function onLoginHandler(e){
         e.preventDefault();
@@ -15,11 +17,13 @@ import {getUser} from "../../services/auth"
   console.log(user)
 
   if (user && user.password===password){
-    alert (`${user.username}`)
+    alert (`${user.username}`);
+    navigate('/');
   } else {
     alert("wrong usename or password!");
   }  
-        }       
+        }
+        
 
   
     return (

@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Home from './components/Home/Home';
@@ -20,24 +20,18 @@ function App() {
     
       </header>
         <Navigation/>
-        
-        <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/profile" exact component={Profile} />
-                    <Route path="/create-record" component={CreateRecord} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/beers/:beerId" component={BeerDetails} />
-                    <Route path="/custom">
-                        <h2>Custom Page</h2>
-                        <p>dasklfjasldf </p>
-                    </Route>
-                    <Route path="/logout" render={(props) => {
-                        console.log('Logged Out!!!');
 
-                        return <Redirect to="/" />
-                    }} />
-                </Switch>
+        <Routes>
+            <Route path="/*" element={<Home/>} />
+            <Route path="/login" element={<Login/>} />
+            
+            <Route path="/register" element={<Register/>} />
+            <Route path="/profile" element={<Profile/>} />
+           
+            <Route path="/create" element={<CreateRecord/>} />
+            <Route path="/beers/:beerId" element={<BeerDetails/>} />
+          </Routes>
+           
     </div>
   );
 }

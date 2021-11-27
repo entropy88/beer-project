@@ -3,9 +3,7 @@ import {Link} from 'react-router-dom';
 
 function BeerCard({beer}) {
 
-  const packages=JSON.parse(beer.packages[0])
-  console.log(packages)
-    
+  const packages=JSON.parse(beer.packages[0]);    
   
     return (
     <>

@@ -3,11 +3,12 @@ import { useState } from "react";
 import * as beerService from "../../services/beer";
 
 import Error from "../Error/Error";
-import { Redirect } from "react-router";
+import { useNavigate } from 'react-router-dom';
 
 function CreateRecord() {
  
   const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
 
   function onErrors(error){
     setErrors(oldArray => [...oldArray, error]);
@@ -36,11 +37,11 @@ function CreateRecord() {
     if (!urlPattern.test(imgUrl)){
       onErrors("Please use valid url")
     }
+
+    console.log(errors)
     
-    if (errors.length<1){
-    
-      //clean up
-      setErrors(oldArray => [...oldArray, '']);
+    if (errors.length<1){  
+  
 
     beerService.create({
        title,      
@@ -57,7 +58,7 @@ function CreateRecord() {
         .then(result => {
           console.log(result._id+ "new");
           //HMMMM...
-        <Redirect to="/" />
+          navigate('/');
      
         })
 } 

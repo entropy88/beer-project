@@ -10,9 +10,10 @@ function CreateRecord() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
-  function onErrors(error){
-    setErrors(oldArray => [...oldArray, error]);
-    console.log(errors)
+  function onErrors(err){
+    setErrors(errors.concat(err));
+    console.log('error pushed',err)
+   console.log(errors)
   }
 
 
@@ -40,28 +41,27 @@ function CreateRecord() {
 
     console.log(errors)
     
-    if (errors.length<1){  
-  
+//     if (errors.length<1){    
 
-    beerService.create({
-       title,      
-        imgUrl,
-        type,
-        country,
-        alcVol,
-         //dummy
-       packages:"[0.5, 1]",
-       rating: "[3]"
+//     beerService.create({
+//        title,      
+//         imgUrl,
+//         type,
+//         country,
+//         alcVol,
+//          //dummy
+//        packages:"[0.5, 1]",
+//        rating: "[3]"
 
 
-    })
-        .then(result => {
-          console.log(result._id+ "new");
-          //HMMMM...
-          navigate('/');
+//     })
+//         .then(result => {
+//           console.log(result._id+ "new");
+//           //HMMMM...
+//           navigate('/');
      
-        })
-} 
+//         })
+// } 
   }
 
 

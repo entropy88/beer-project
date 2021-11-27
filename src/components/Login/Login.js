@@ -1,37 +1,52 @@
 import { useState } from "react";
 import styles from "./Login.module.css"
+import {getUser} from "../../services/auth"
 
-function Login() {
-  const [user, setUser] = useState("");
+ function Login() {
 
-  function onLogin(){
-    setUser("someUser");
-    console.log(user)
-  }
+ async function onLoginHandler(e){
+        e.preventDefault();
+      
+      let formData = new FormData(e.currentTarget);
+    let username = formData.get('username');
+    let password=formData.get('password')
+    console.log(username);
+  const user = await (getUser(username))
+  console.log(user)
 
-   
+  if (user && user.password===password){
+    alert (`${user.username}`)
+  } else {
+    alert("wrong usename or password!");
+  }  
+        }       
+
   
     return (
       <div className={styles.form}>
+  
     <div className={styles.title}>Вход</div>
 
     <div className={styles.subtitle}>Нямаш профил? Регистрация</div>
+    <form onSubmit={onLoginHandler} method="POST">
      
       <div className={styles.inputContainer}>
-        <input id="username" className={styles.input} type="text" placeholder=" " />
+        <input id="username" className={styles.input} name="username" type="text" placeholder=" " />
         <div className={styles.cut}></div>
         <label for="username" className={styles.placeholder}>Потребителско име</label>
       </div>
 
 
       <div className={styles.inputContainer}>
-        <input id="password" className={styles.input} type="password" placeholder=" " />
+        <input id="password" className={styles.input} name="password" type="password" placeholder=" " />
         <div className={styles.cut}></div>
         <label for="password" className={styles.placeholder}>Парола</label>
       </div>
 
      
-      <button onClick={onLogin} >Вход</button>
+      <button >Вход</button>
+
+      </form>
     </div>
     );
   }

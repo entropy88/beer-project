@@ -23,22 +23,30 @@ navigate('/');
 
  //FIGURE THIS SHIT OUT
  console.log(beer.rating)
+ console.log(beer.packages)
 
 //  const overall= beer.rating.reduce(function (a, b) { return a + b; }, 0)
 //  console.log(overall)
     
     return (
-        <section id="details-page" className="details">
+        <section id="details-page" className={styles.details}>
+            <h3>{beer.title}</h3>
             <div className={styles.beerWrapper} >
-                <h3>{beer.title}</h3>
-                <img src={beer.imgUrl}></img>
-                <p>Произход: {beer.country}</p>     
-                <p>Тип: {beer.type}</p>         
-                <p>Рейтинг: {beer.rating}</p>    
-                
+            <article className={styles.imgWrapper}> <img src={beer.imgUrl}></img></article>
+            <article className={styles.beerContent}>
+                    <p className={styles.description}>Произход: {beer.country}</p>     
+                    <p className={styles.description}>Тип: {beer.type}</p>    
+                    <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}</p> 
+                    <p className={styles.description}>Опаковки: {beer.packages}</p>      
+                    <p className={styles.description}>Рейтинг: {beer.rating}</p>    
+
+                <article className={styles.buttonsRow}>
+                    <button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
+                    <button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
+               </article>
+            </article>
             </div>
-            <button onClick={()=>onBeerDelete(beerId)}>iztrii</button>
-            <Link to={`/update/${beer._id}`} className="details-button">Update</Link>
+            
            
         </section>
     );

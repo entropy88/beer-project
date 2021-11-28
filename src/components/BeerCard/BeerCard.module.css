@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-basis: 28%;
+    flex-basis: 30%;
     background-color: white;
     padding:24px;
     border-radius: 24px;
@@ -17,12 +17,28 @@
     color:rgb(100, 100, 100);
 }
 
-.beerImg{
+.imgWrapper {
+    max-width: 80%;
+}
+
+.imgWrapper img{
     max-width: 100%;
+}
+
+.description{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .packagesSpan{
     background-color: #C96E12;
     color:#FFF897;
     margin-right: 4px;
+}
+
+ a{
+    color:#FFF897;
+    text-decoration: none;
 }

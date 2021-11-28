@@ -7,15 +7,14 @@ import { useNavigate } from 'react-router-dom';
 
 function CreateRecord() {
  
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
-  function onErrors(err){
-    setErrors(errors.concat(err));
-    console.log('error pushed',err)
-   console.log(errors)
-  }
-
+  // function onErrors(err){
+  //   setErrors(errors.concat(err));
+  //   console.log('error pushed',err)
+  //  console.log(errors)
+  // }
 
 
   const onBeerCreate = (e) => {
@@ -29,40 +28,39 @@ function CreateRecord() {
     let alcVol=formData.get('alcoholicContent');
 
    //validation
-    if (title.length<3){
-      onErrors("Title must be atleast 3 characters!")
-    }
+    // if (title.length<3){
+    //   onErrors("Title must be atleast 3 characters!")
+    // }
 
-    const urlPattern=new RegExp (/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/);
+    // const urlPattern=new RegExp (/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/);
 
-    if (!urlPattern.test(imgUrl)){
-      onErrors("Please use valid url")
-    }
+    // if (!urlPattern.test(imgUrl)){
+    //   onErrors("Please use valid url")
+    // }
 
-    console.log(errors)
+    // console.log(errors)
     
 //     if (errors.length<1){    
 
-//     beerService.create({
-//        title,      
-//         imgUrl,
-//         type,
-//         country,
-//         alcVol,
-//          //dummy
-//        packages:"[0.5, 1]",
-//        rating: "[3]"
+    beerService.create({
+       title,      
+        imgUrl,
+        type,
+        country,
+        alcVol,
+         //dummy
+       packages:[0.5],
+       rating: [3]
 
 
-//     })
-//         .then(result => {
-//           console.log(result._id+ "new");
-//           //HMMMM...
-//           navigate('/');
-     
-//         })
-// } 
-  }
+    })
+        .then(result => { 
+          console.log(result._id+ "new");
+          //HMMMM...
+          navigate('/');     
+        })
+      } 
+  // }
 
 
     return (
@@ -70,77 +68,71 @@ function CreateRecord() {
        <form id="beer_form" className={styles.createForm}  onSubmit={onBeerCreate} method="POST">
        <label className={styles.createLabel}  htmlFor="beerName">Марка:</label>
        <input className={styles.createInput} type="text" id="beerName" name="beerName"></input>
-
        <label className={styles.createLabel} htmlFor="beerPicture">Изображение:</label>
        <input  className={styles.createInput} type="text" id="beerPicture" name="beerPicture"></input>
-
-
-
        <label className={styles.createLabel} htmlFor="beerTypes">Тип:</label>
 
-<select className={styles.createSelect} name="beerTypes" id="beerTypes">
-  <option value="ale">Тъмна</option>
-  <option value="lager">Светла</option>
-  <option value="weiss">Вайс</option>
- </select> 
+          <select className={styles.createSelect} name="beerTypes" id="beerTypes">
+            <option value="Тъмна">Тъмна</option>
+            <option value="Светла">Светла</option>
+            <option value="Вайс">Вайс</option>
+          </select> 
 
- <label className={styles.createLabel} htmlFor="beerOrigin">Произход:</label>
- <select className={styles.createSelect} name="beerOrigin" id="beerOrigin">
-  <option value="България">България</option>
-  <option value="Внос">Внос</option>
- </select> 
+          <label className={styles.createLabel} htmlFor="beerOrigin">Произход:</label>
+          <select className={styles.createSelect} name="beerOrigin" id="beerOrigin">
+            <option value="България">България</option>
+            <option value="Внос">Внос</option>
+          </select> 
 
- <label className={styles.createLabel} htmlFor="alcoholicContent">Алкохолно съдържание:</label>
- <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"></input>
+          <label className={styles.createLabel} htmlFor="alcoholicContent">Алкохолно съдържание:</label>
+          <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"></input>
 
- <label className={styles.createLabel} htmlFor="beerPackage">Опаковки:</label>
-<article className={styles.packaging}>
+          <label className={styles.createLabel} htmlFor="beerPackage">Опаковки:</label>
+          <article className={styles.packaging}>
 
-    <article className={styles.packaging_item}>
- <input type="checkbox" id="standard_glass"></input>
-  <label htmlFor="standard_glass">0.5l стъкло</label>
-</article>
+              <article className={styles.packaging_item}>
+          <input type="checkbox" id="standard_glass"></input>
+            <label htmlFor="standard_glass">0.5l стъкло</label>
+          </article>
 
-<article className={styles.packaging_item}>
- <input type="checkbox" id="small_glass"></input>
- <label htmlFor="small_glass">0.33l стъкло</label>
- </article>
+          <article className={styles.packaging_item}>
+          <input type="checkbox" id="small_glass"></input>
+          <label htmlFor="small_glass">0.33l стъкло</label>
+          </article>
 
- <article className={styles.packaging_item}>
- <input type="checkbox" id="standard_can"></input>
- <label htmlFor="standard_can">0.5l кен</label>
- </article>
+          <article className={styles.packaging_item}>
+          <input type="checkbox" id="standard_can"></input>
+          <label htmlFor="standard_can">0.5l кен</label>
+          </article>
 
- <article className={styles.packaging_item}>
- <input type="checkbox" id="small_can"></input>
- <label htmlFor="small_can">0.33l кен</label>
- </article>
+          <article className={styles.packaging_item}>
+          <input type="checkbox" id="small_can"></input>
+          <label htmlFor="small_can">0.33l кен</label>
+          </article>
 
- <article className={styles.packaging_item}>
- <input type="checkbox" id="small_galon"></input>
- <label htmlFor="small_galon">1l pvc</label>
- </article>
+          <article className={styles.packaging_item}>
+          <input type="checkbox" id="small_galon"></input>
+          <label htmlFor="small_galon">1l pvc</label>
+          </article>
 
- <article className={styles.packaging_item}>
- <input type="checkbox" id="big_galon"></input>
- <label htmlFor="big_galon">2l pvc</label>
- </article>
+          <article className={styles.packaging_item}>
+          <input type="checkbox" id="big_galon"></input>
+          <label htmlFor="big_galon">2l pvc</label>
+          </article>
 
- </article>
+          </article>
 
-<article className={styles.stars}>
- <span><i className="fas fa-beer"></i></span>
- <span><i className="fas fa-beer"></i></span>
- <span><i className="fas fa-beer"></i></span>
+          <article className={styles.stars}>
+          <span><i className="fas fa-beer"></i></span>
+          <span><i className="fas fa-beer"></i></span>
+          <span><i className="fas fa-beer"></i></span>
+          </article>
 
-</article>
-
-
-<button type="submit" id="submitBeer">Запази</button>
+          <button type="submit" id="submitBeer">Запази</button>
 
        </form>
 
-       {errors.length>0?<Error errors={errors}/>:<p>it's all good</p>}
+       {/* {errors.length>0?<Error errors={errors}/>:<p>it's all good</p>} */}
       </>
     );
   }

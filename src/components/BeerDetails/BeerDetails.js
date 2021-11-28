@@ -1,17 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as beerService from '../../services/beer';
+import { useNavigate } from 'react-router-dom';
 import styles from "./BeerDetails.module.css";
 
 const BeerDetails = () => {
     const [beer, setBeer] = useState({});
     const { beerId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(async () => {
         let beerResult = await beerService.getOne(beerId);
-
         setBeer(beerResult);
     }, []);
+
+ function onBeerDelete(id){
+console.log('proceed to delete', id);
+beerService.removeBeer(id);
+navigate('/');
+ }
     
     return (
         <section id="details-page" className="details">
@@ -23,6 +30,7 @@ const BeerDetails = () => {
                 <p>Рейтинг: {beer.rating}</p>    
                 
             </div>
+            <button onClick={()=>onBeerDelete(beerId)}>iztrii</button>
            
         </section>
     );

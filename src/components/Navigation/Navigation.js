@@ -1,11 +1,5 @@
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "../Home/Home";
-import Profile from "../Profile/Profile";
-import CreateRecord from "../CreateRecord/CreateRecord";
-import Register from "../Register/Register";
-import Login from "../Login/Login";
-import BeerDetails from "../BeerDetails/BeerDetails"
 import styles from "./Navigation.module.css"
 
 

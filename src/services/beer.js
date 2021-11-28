@@ -23,6 +23,8 @@ export const create = async (beerData) => {
     return result;
 };
 
+export const removeBeer = (id) => fetch(`${baseUrl}/delete-beer/${id}`).then(res => res.json());
+
 // export const getLatest = () => {
 //     return fetch(`${baseUrl}/games?sortBy=_createdOn%20desc&distinct=category`)
 //         .then(res => res.json())

@@ -9,17 +9,18 @@ fetch(`${baseUrl}/get-user/${username}`)
 .then(res => res.json())
 
 
-// export const create = async (beerData) => {
-//     let response = await fetch(`${baseUrl}/add-beer`, {
-//         method: 'POST',
-//         headers: {
-//             'content-type': 'application/json',
-//         },
-//         body: JSON.stringify(beerData)
-//     });
+export const create = async (user) => {
+    let response = await fetch(`${baseUrl}/add-user`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(user)
+    });
 
-//     let result = await response.json();
+    let result = await response.json();
+    console.log(result)
 
-//     return result;
-// };
+    return result;
+};
 

@@ -20,6 +20,12 @@ console.log('proceed to delete', id);
 beerService.removeBeer(id);
 navigate('/');
  }
+
+ //FIGURE THIS SHIT OUT
+ console.log(beer.rating)
+
+//  const overall= beer.rating.reduce(function (a, b) { return a + b; }, 0)
+//  console.log(overall)
     
     return (
         <section id="details-page" className="details">

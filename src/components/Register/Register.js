@@ -49,26 +49,26 @@ function Register() {
       <div className={styles.inputContainer}>
         <input id="username" className={styles.input} type="text" name="username" placeholder=" " />
         <div className={styles.cut}></div>
-        <label for="username" className={styles.placeholder}>Потребителско име</label>
+        <label htmlFor="username" className={styles.placeholder}>Потребителско име</label>
       </div>
 
 
       <div className={styles.inputContainer}>
         <input id="password" className={styles.input} type="password" name="password" placeholder=" " />
         <div className={styles.cut}></div>
-        <label for="password" className={styles.placeholder}>Парола</label>
+        <label htmlFor="password" className={styles.placeholder}>Парола</label>
       </div>
 
       <div className={styles.inputContainer}>
         <input id="repeatPassword" className={styles.input} type="password" name="repeatPassword" placeholder=" " />
         <div className={styles.cut}></div>
-        <label for="repeatPassword" className={styles.placeholder}>Повтори паролата</label>
+        <label htmlFor="repeatPassword" className={styles.placeholder}>Повтори паролата</label>
       </div>
 
       <div className={styles.inputContainer}>
         <input id="email" className={styles.input}  type="email" name="email" placeholder=" " />
         <div className={styles.cut}></div>
-        <label for="email" className={styles.placeholder}>Email</label>
+        <label htmlFor="email" className={styles.placeholder}>Email</label>
       </div>
       <button type="submit" >Вписване</button>
       </form>

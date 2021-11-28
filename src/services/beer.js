@@ -23,7 +23,7 @@ export const create = async (beerData) => {
     return result;
 };
 
-export const updateBeer = (id) => fetch(`${baseUrl}/update-beer/${id}`).then(res => res.json());
+export const updateBeer = (id,reqBody) => fetch(`${baseUrl}/update-beer/${id}`,reqBody).then(res => res.json());
 
 export const removeBeer = (id) => fetch(`${baseUrl}/delete-beer/${id}`).then(res => res.json());
 

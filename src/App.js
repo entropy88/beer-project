@@ -9,6 +9,7 @@ import CreateRecord from './components/CreateRecord/CreateRecord';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import BeerDetails from './components/BeerDetails/BeerDetails';
+import UpdateRecord from './components/UpdateRecord/UpdateRecord';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/profile" element={<Profile/>} />
            
             <Route path="/create" element={<CreateRecord/>} />
+            <Route path="/update/:beerId" element={<UpdateRecord/>} />
             <Route path="/beers/:beerId" element={<BeerDetails/>} />
           </Routes>
            

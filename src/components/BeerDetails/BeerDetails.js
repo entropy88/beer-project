@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as beerService from '../../services/beer';
 import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import styles from "./BeerDetails.module.css";
 
 const BeerDetails = () => {
@@ -31,6 +32,7 @@ navigate('/');
                 
             </div>
             <button onClick={()=>onBeerDelete(beerId)}>iztrii</button>
+            <Link to={`/update/${beer._id}`} className="details-button">Update</Link>
            
         </section>
     );

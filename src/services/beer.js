@@ -23,7 +23,18 @@ export const create = async (beerData) => {
     return result;
 };
 
-export const updateBeer = (id,reqBody) => fetch(`${baseUrl}/update-beer/${id}`,reqBody).then(res => res.json());
+export const updateBeer = async(id, beer)=>{
+    let response=await fetch (`${baseUrl}/update-beer/${id}`,{
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+        }, body: JSON.stringify(beer)
+    });
+
+    let result= await response.json();
+    return result;
+};
+
 
 export const removeBeer = (id) => fetch(`${baseUrl}/delete-beer/${id}`).then(res => res.json());
 

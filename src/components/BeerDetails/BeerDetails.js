@@ -7,26 +7,41 @@ import styles from "./BeerDetails.module.css";
 
 const BeerDetails = () => {
     const [beer, setBeer] = useState({});
+    const [rating, setRating] = useState(0);
+    const [userRating, setUserRating] = useState(0);
+    const [hover, setHover] = useState(0);
     const { beerId } = useParams();
     const navigate = useNavigate();
+
+    
 
     useEffect(async () => {
         let beerResult = await beerService.getOne(beerId);
         setBeer(beerResult);
+
+        const sum = beerResult.rating.reduce(function(a, b){
+            return a + b;
+        }, 0);
+    
+        setRating(Math.round(sum/beerResult.rating.length));
     }, []);
 
+    
+  
  function onBeerDelete(id){
 console.log('proceed to delete', id);
 beerService.removeBeer(id);
 navigate('/');
  }
 
- //FIGURE THIS SHIT OUT
- console.log(beer.rating)
- console.log(beer.packages)
-
-//  const overall= beer.rating.reduce(function (a, b) { return a + b; }, 0)
-//  console.log(overall)
+async function onUserRating(r){
+    let updatedBeer=Object.assign(beer);
+   
+    updatedBeer.rating.push(r);
+    console.log(beerId)
+   const result= await beerService.updateBeer(beerId, updatedBeer);
+    console.log(result)
+}
     
     return (
         <section id="details-page" className={styles.details}>
@@ -38,17 +53,37 @@ navigate('/');
                     <p className={styles.description}>Тип: {beer.type}</p>    
                     <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}</p> 
                     <p className={styles.description}>Опаковки: {beer.packages}</p>      
-                    <p className={styles.description}>Рейтинг: {beer.rating}</p>    
+                    <p className={styles.description}>Рейтинг: {rating}</p>    
 
                 <article className={styles.buttonsRow}>
                     <button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
                     <button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
                </article>
-            </article>
-            </div>
-            
-           
-        </section>
+
+               <div className={styles.userRating}>
+                 {[...Array(5)].map((star, index) => {
+                index += 1;
+                 return (
+                 <button
+                 type="button"
+                key={index}
+                className={index <= (hover || rating) ? "on" : "off", styles.starButton}
+                onClick={function(){
+                setUserRating(index);
+                onUserRating(index)
+                 }}
+                onMouseEnter={() => setHover(index)}
+                onMouseLeave={() => setHover(rating)}
+            >
+            <span className="star">&#9733;</span>
+            </button>
+        );
+      })}
+  
+    </div>
+</article>
+</div>
+</section>
     );
 }
 

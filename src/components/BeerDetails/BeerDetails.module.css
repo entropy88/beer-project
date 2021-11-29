@@ -4,6 +4,7 @@
 
 .details{
     width: 80%;
+    max-height: 80%;
     margin: 16px auto;
     background-color: white;
     padding:24px;
@@ -13,8 +14,12 @@
 }
 
 h3{
-    text-align: center;
+    text-align: center; 
+    font-size: 24px;
+    color:rgb(100, 100, 100);     
+    font-weight: normal; 
 }
+
 .beerWrapper{   
     display: flex;
     flex-direction: row;
@@ -24,11 +29,11 @@ h3{
 }
 
 .imgWrapper {
-    flex-basis: 50%;
+   flex-basis: 50%;
 }
 
 .imgWrapper img{
-    max-width: 100%;
+    object-fit: cover;
 }
 
 .beerContent{
@@ -66,3 +71,22 @@ h3{
     color:#FFF897;
     margin-right: 4px;
 }
+
+.userRating{
+    display: flex;
+    flex-direction: row;
+}
+
+.starButton{   
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;     
+}
+
+.on {
+    color: #000;
+  }
+  .off {
+    color: #ccc;
+  }

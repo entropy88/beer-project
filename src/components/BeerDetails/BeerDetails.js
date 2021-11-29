@@ -75,7 +75,7 @@ async function onUserRating(r){
                 onMouseEnter={() => setHover(index)}
                 onMouseLeave={() => setHover(rating)}
             >
-            <span className="star">&#9733;</span>
+            <span className={styles.starButton}>&#9733;</span>
             </button>
         );
       })}

@@ -19,7 +19,10 @@ function BeerCard({beer}) {
      <p className={styles.description}>Опаковки: 
      {beer.packages.map(el => <span key={el} className={styles.packagesSpan}> {el}l. </span>)}
        </p>
-     <p className={styles.description}>Рейтинг: {rating}</p>
+      <p>{[...Array(rating)].map((e, i) => {
+      return <span key={i}>&#9733;</span>
+      })}</p>
+   
      
      <button><Link to={`/beers/${beer._id}`} className="details-button">Детайли</Link></button>
      </article>

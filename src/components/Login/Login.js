@@ -17,6 +17,7 @@ import {AuthContext} from "../../Contexts/AuthContext"
  
   getUser(username)
   .then((data)=>{
+    //check if password is correct!
     login(data);
     console.log(data)
     navigate('/')

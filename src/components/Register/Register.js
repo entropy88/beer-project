@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../Contexts/AuthContext";
 import styles from "./Register.module.css"
 import {create, getUser} from "../../services/auth";
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
-
+  const {login}=useContext(AuthContext)
   const navigate = useNavigate();
 
   async function onUserCreate(e){
@@ -24,16 +25,18 @@ function Register() {
       password,
       registrationDate
     }
-    
-      console.log(newUser);
 
- 
+ //CHECK IF USER ALREADY EXISTS
 
- const user=await getUser(username);
- console.log(user)
+//  const user=await getUser(username);
+//  console.log(user)
 
-  // const registeredUser=await create(newUser);
-  // console.log(registeredUser);
+ create(newUser)
+ .then(data=>{
+   login(data);
+   navigate('/')
+ })
+
  }
 
 

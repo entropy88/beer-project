@@ -10,12 +10,12 @@ export default function Navigation() {
   const {user} =useContext(AuthContext);
 
   const guestLinks=(
-    <div><li><Link to="/login">Вход</Link></li>
-    <li><Link to="/register">Регистрация</Link></li></div>
+    <><li><Link to="/login">Вход</Link></li>
+    <li><Link to="/register">Регистрация</Link></li></>
   );
   const userLinks=(
-    <div>  <li><Link to="/profile">Профил</Link></li>
-    <li><Link to="/create">Добави бира</Link></li>  </div>
+    <>  <li><Link to="/profile">Профил на {user.username}</Link></li>
+    <li><Link to="/create">Добави бира</Link></li> </>
   );
 
  

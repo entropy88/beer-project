@@ -2,26 +2,38 @@ import { useState } from "react";
 import styles from "./Login.module.css"
 import {getUser} from "../../services/auth";
 import { useNavigate } from 'react-router-dom';
+import {useContext} from "react";
+import {AuthContext} from "../../Contexts/AuthContext"
 
  function Login() {
+   const { login }= useContext(AuthContext)
   const navigate = useNavigate();
 
  async function onLoginHandler(e){
-        e.preventDefault();
-      
-      let formData = new FormData(e.currentTarget);
-    let username = formData.get('username');
-    let password=formData.get('password')
-    console.log(username);
-  const user = await (getUser(username))
-  console.log(user)
+   e.preventDefault();      
+  let formData = new FormData(e.currentTarget);
+  let username = formData.get('username');
+  let password=formData.get('password')
+ 
+  getUser(username)
+  .then((data)=>{
+    login(data);
+    console.log(data)
+    navigate('/')
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+//  if (!user){
+//    alert('no such user!')
+//  }
 
-  if (user && user.password===password){
-    alert (`${user.username}`);
-    navigate('/');
-  } else {
-    alert("wrong usename or password!");
-  }  
+//   if (user && user.password===password){
+//     alert (`${user.username}`);
+//     navigate('/');
+//   } else {
+//     alert("wrong usename or password!");
+//   }  
         }
         
 

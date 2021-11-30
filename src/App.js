@@ -1,6 +1,7 @@
 import logo from './logo.svg';
-
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { AuthContext } from './Contexts/AuthContext';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Home from './components/Home/Home';
@@ -12,7 +13,25 @@ import BeerDetails from './components/BeerDetails/BeerDetails';
 import UpdateRecord from './components/UpdateRecord/UpdateRecord';
 
 function App() {
+  const [user, setUser] = useState({});
+
+  const login = (authData) => {
+   
+    const middleUser={
+      _id:authData._id,
+      username:authData.username  
+    }
+     setUser(Object.assign(middleUser));
+    console.log(user)
+  }
+
+  const onLogout = () => {
+
+  };
+
+
   return (
+    <AuthContext.Provider value={{user, login}}>
     <div className="App"> 
     
       <header className="mainHeader">
@@ -35,6 +54,7 @@ function App() {
           </Routes>
            
     </div>
+    </AuthContext.Provider>
   );
 }
 

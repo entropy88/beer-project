@@ -13,6 +13,9 @@ function CreateRecord() {
   const navigate = useNavigate();
   const {user} =useContext(AuthContext);
 
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
+
   // function onErrors(err){
   //   setErrors(errors.concat(err));
   //   console.log('error pushed',err)
@@ -47,16 +50,12 @@ function CreateRecord() {
 
     beerService.create({
       ownerId:user._id,
-       title,      
-        imgUrl,
-        type,
-        country,
-        alcVol,
-         //default
-    
-       rating: [3]
-
-
+      title,      
+      imgUrl,
+      type,
+      country,
+      alcVol,     
+      rating: [rating]
     })
         .then(result => { 
           console.log(result._id+ "new");
@@ -91,7 +90,27 @@ function CreateRecord() {
           <label className={styles.createLabel} htmlFor="alcoholicContent">Алкохолно съдържание:</label>
           <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"></input>
           
-         
+          <div className={styles.rating}>
+                {[...Array(5)].map((star, index) => {
+                index += 1;
+                 return (
+                 <button
+                 type="button"
+                key={index}
+                className={index <= (hover || rating) ? "on" : "off"}
+                onClick={function(){
+                setRating(index);
+               
+                 }}
+                onMouseEnter={() => setHover(index)}
+                onMouseLeave={() => setHover(rating)}
+                    >
+                    <span>&#127866;</span>
+                    </button>
+        );
+      })}
+  
+        </div>
 
           <button type="submit" id="submitBeer">Запази</button>
 

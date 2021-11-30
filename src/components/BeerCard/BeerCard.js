@@ -17,7 +17,7 @@ function BeerCard({beer}) {
      <div className={styles.imgWrapper}> <img src={beer.imgUrl}></img></div>
      <p className={styles.description}>Тип: {beer.type}</p>
      <p>{[...Array(rating)].map((e, i) => {
-      return <span key={i}>&#9733;</span>
+      return <span key={i}>&#127866;</span>
       })}</p>
    
      

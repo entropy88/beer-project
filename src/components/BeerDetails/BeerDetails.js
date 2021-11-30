@@ -79,7 +79,7 @@ return (
                 onMouseEnter={() => setHover(index)}
                 onMouseLeave={() => setHover(rating)}
                     >
-                    <span className={styles.starButton}>&#9733;</span>
+                    <span>&#127866;</span>
                     </button>
         );
       })}

@@ -16,14 +16,14 @@
 }
 
 .createSelect{
-    margin-top: 16px;
-    margin-bottom:8px;
-    background-color: #FFF897;
-    font-size: 18px;
-    padding: 16px;
-   border:none;
-   border-radius: 12px;
-   color:rgb(100, 100, 100);
+  margin-top: 16px;
+  margin-bottom:8px;
+  background-color: #FFF897;
+  font-size: 18px;
+  padding: 16px;
+  border:none;
+  border-radius: 12px;
+  color:rgb(100, 100, 100);
 }
 
 
@@ -32,9 +32,9 @@
     background-color: #FFF897;
     font-size: 18px;
     padding: 16px;
-   border:none;
-   border-radius: 12px;
-   color:rgb(100, 100, 100);
+    border:none;
+    border-radius: 12px;
+    color:rgb(100, 100, 100);
 }
 
 .createLabel{
@@ -43,20 +43,14 @@
     text-align: center;
 }
 
-.packaging{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.packaging_item{
-    flex-basis: 30%;
- }
-
-.stars{
-    display: flex;
-}
-
 button{
     font-family: 'Lobster', serif;
+}
+
+.rating{
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
 }

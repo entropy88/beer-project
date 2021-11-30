@@ -1,6 +1,8 @@
 import styles from "./CreateRecord.module.css";
 import { useState } from "react";
 import * as beerService from "../../services/beer";
+import { useContext } from "react/cjs/react.development";
+import {AuthContext} from "../../Contexts/AuthContext";
 
 import Error from "../Error/Error";
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +11,7 @@ function CreateRecord() {
  
   // const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
+  const {user} =useContext(AuthContext);
 
   // function onErrors(err){
   //   setErrors(errors.concat(err));
@@ -43,6 +46,7 @@ function CreateRecord() {
 //     if (errors.length<1){    
 
     beerService.create({
+      ownerId:user._id,
        title,      
         imgUrl,
         type,

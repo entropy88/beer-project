@@ -57,8 +57,7 @@ return (
         <article className={styles.beerContent}>
             <p className={styles.description}>Произход: {beer.country}</p>     
             <p className={styles.description}>Тип: {beer.type}</p>    
-            <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}</p> 
-            <p className={styles.description}>Опаковки: {beer.packages}</p>      
+            <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}</p>       
             <p className={styles.description}>Рейтинг: {rating}</p>    
 
             <article className={styles.buttonsRow}>

@@ -1,0 +1,11 @@
+.wrapper{
+    text-align: center;
+    width: 80%;
+    max-height: 80%;
+    margin: 16px auto;
+    background-color: white;
+    padding:24px;
+    border-radius: 24px;
+    border: 1px solid rgb(100, 100, 100);
+    color:rgb(100, 100, 100);
+}

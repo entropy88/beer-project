@@ -52,8 +52,8 @@ function CreateRecord() {
         type,
         country,
         alcVol,
-         //dummy
-       packages:[0.5],
+         //default
+    
        rating: [3]
 
 
@@ -90,47 +90,8 @@ function CreateRecord() {
 
           <label className={styles.createLabel} htmlFor="alcoholicContent">Алкохолно съдържание:</label>
           <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"></input>
-
-          <label className={styles.createLabel} htmlFor="beerPackage">Опаковки:</label>
-          <article className={styles.packaging}>
-
-              <article className={styles.packaging_item}>
-          <input type="checkbox" id="standard_glass"></input>
-            <label htmlFor="standard_glass">0.5l стъкло</label>
-          </article>
-
-          <article className={styles.packaging_item}>
-          <input type="checkbox" id="small_glass"></input>
-          <label htmlFor="small_glass">0.33l стъкло</label>
-          </article>
-
-          <article className={styles.packaging_item}>
-          <input type="checkbox" id="standard_can"></input>
-          <label htmlFor="standard_can">0.5l кен</label>
-          </article>
-
-          <article className={styles.packaging_item}>
-          <input type="checkbox" id="small_can"></input>
-          <label htmlFor="small_can">0.33l кен</label>
-          </article>
-
-          <article className={styles.packaging_item}>
-          <input type="checkbox" id="small_galon"></input>
-          <label htmlFor="small_galon">1l pvc</label>
-          </article>
-
-          <article className={styles.packaging_item}>
-          <input type="checkbox" id="big_galon"></input>
-          <label htmlFor="big_galon">2l pvc</label>
-          </article>
-
-          </article>
-
-          <article className={styles.stars}>
-          <span><i className="fas fa-beer"></i></span>
-          <span><i className="fas fa-beer"></i></span>
-          <span><i className="fas fa-beer"></i></span>
-          </article>
+          
+         
 
           <button type="submit" id="submitBeer">Запази</button>
 

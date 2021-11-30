@@ -16,10 +16,7 @@ function BeerCard({beer}) {
      <p className={styles.beerTitle}>{beer.title}</p>
      <div className={styles.imgWrapper}> <img src={beer.imgUrl}></img></div>
      <p className={styles.description}>Тип: {beer.type}</p>
-     <p className={styles.description}>Опаковки: 
-     {beer.packages.map(el => <span key={el} className={styles.packagesSpan}> {el}l. </span>)}
-       </p>
-      <p>{[...Array(rating)].map((e, i) => {
+     <p>{[...Array(rating)].map((e, i) => {
       return <span key={i}>&#9733;</span>
       })}</p>
    

@@ -19,20 +19,18 @@ const BeerDetails = () => {
     const navigate = useNavigate();
    
 
-    useEffect(async () => {
-        let beerResult = await beerService.getOne(beerId);
-        setBeer(beerResult);
+useEffect(async () => {
+    let beerResult = await beerService.getOne(beerId);
+    setBeer(beerResult);
 
-        const sum = beerResult.rating.reduce(function(a, b){
-            return a + b;
+    const sum = beerResult.rating.reduce(function(a, b){
+        return a + b;
         }, 0);
     
-        setRating(Math.round(sum/beerResult.rating.length));
-    }, []);
-
-    
+    setRating(Math.round(sum/beerResult.rating.length));
+    }, []);    
   
- function onBeerDelete(id){
+function onBeerDelete(id){
 console.log('proceed to delete', id);
 beerService.removeBeer(id);
 navigate('/');
@@ -51,25 +49,24 @@ const ownerButtons=(<>
 <button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
 </>)
     
-    return (
-        <section id="details-page" className={styles.details}>
-            <h3>{beer.title}</h3>
-            <div className={styles.beerWrapper} >
-            <article className={styles.imgWrapper}> <img src={beer.imgUrl}></img></article>
-            <article className={styles.beerContent}>
-                    <p className={styles.description}>Произход: {beer.country}</p>     
-                    <p className={styles.description}>Тип: {beer.type}</p>    
-                    <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}</p> 
-                    <p className={styles.description}>Опаковки: {beer.packages}</p>      
-                    <p className={styles.description}>Рейтинг: {rating}</p>    
+return (
+    <section id="details-page" className={styles.details}>
+        <h3>{beer.title}</h3>
+        <div className={styles.beerWrapper} >
+        <article className={styles.imgWrapper}> <img src={beer.imgUrl}></img></article>
+        <article className={styles.beerContent}>
+            <p className={styles.description}>Произход: {beer.country}</p>     
+            <p className={styles.description}>Тип: {beer.type}</p>    
+            <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}</p> 
+            <p className={styles.description}>Опаковки: {beer.packages}</p>      
+            <p className={styles.description}>Рейтинг: {rating}</p>    
 
-                <article className={styles.buttonsRow}>
-                    {user._id==beer.ownerId?ownerButtons :""}                  
-                   
-               </article>
+            <article className={styles.buttonsRow}>
+                {user._id==beer.ownerId?ownerButtons :""}                  
+            </article>
 
-               <div className={styles.userRating}>
-                 {[...Array(5)].map((star, index) => {
+            <div className={styles.userRating}>
+                {[...Array(5)].map((star, index) => {
                 index += 1;
                  return (
                  <button
@@ -82,16 +79,16 @@ const ownerButtons=(<>
                  }}
                 onMouseEnter={() => setHover(index)}
                 onMouseLeave={() => setHover(rating)}
-            >
-            <span className={styles.starButton}>&#9733;</span>
-            </button>
+                    >
+                    <span className={styles.starButton}>&#9733;</span>
+                    </button>
         );
       })}
   
-    </div>
-</article>
-</div>
-</section>
+        </div>
+        </article>
+        </div>
+    </section>
     );
 }
 

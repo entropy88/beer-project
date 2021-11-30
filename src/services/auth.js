@@ -5,7 +5,6 @@ const baseUrl = 'http://localhost:8000/api';
 
 export const getUser = (username) => 
 fetch(`${baseUrl}/get-user/${username}`)
-
 .then(res => res.json())
 
 

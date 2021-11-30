@@ -5,15 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import styles from "./BeerDetails.module.css";
 
+import { useContext } from "react/cjs/react.development";
+import {AuthContext} from "../../Contexts/AuthContext";
+
 const BeerDetails = () => {
     const [beer, setBeer] = useState({});
     const [rating, setRating] = useState(0);
     const [userRating, setUserRating] = useState(0);
     const [hover, setHover] = useState(0);
     const { beerId } = useParams();
-    const navigate = useNavigate();
 
-    
+    const {user} =useContext(AuthContext);
+    const navigate = useNavigate();
+   
 
     useEffect(async () => {
         let beerResult = await beerService.getOne(beerId);
@@ -35,13 +39,17 @@ navigate('/');
  }
 
 async function onUserRating(r){
-    let updatedBeer=Object.assign(beer);
-   
+    let updatedBeer=Object.assign(beer);   
     updatedBeer.rating.push(r);
     console.log(beerId)
-   const result= await beerService.updateBeer(beerId, updatedBeer);
+    const result= await beerService.updateBeer(beerId, updatedBeer);
     console.log(result)
 }
+
+const ownerButtons=(<>
+<button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
+<button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
+</>)
     
     return (
         <section id="details-page" className={styles.details}>
@@ -56,8 +64,8 @@ async function onUserRating(r){
                     <p className={styles.description}>Рейтинг: {rating}</p>    
 
                 <article className={styles.buttonsRow}>
-                    <button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
-                    <button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
+                    {user._id==beer.ownerId?ownerButtons :""}                  
+                   
                </article>
 
                <div className={styles.userRating}>

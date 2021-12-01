@@ -94,7 +94,7 @@ return (
                 {user._id==beer.ownerId?ownerButtons :''}                  
             </article>
 
-            {user._id?ratingButtons:''}
+            {user._id&& user._id!==beer.ownerId?ratingButtons:''}
            
         </article>
         </div>

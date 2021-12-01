@@ -68,53 +68,52 @@ function CreateRecord() {
 
     return (
       <>
-       <form id="beer_form" className={styles.createForm}  onSubmit={onBeerCreate} method="POST">
+    <form id="beer_form" className={styles.createForm}  onSubmit={onBeerCreate} method="POST">
        <label className={styles.createLabel}  htmlFor="beerName">Марка:</label>
        <input className={styles.createInput} type="text" id="beerName" name="beerName"></input>
        <label className={styles.createLabel} htmlFor="beerPicture">Изображение:</label>
        <input  className={styles.createInput} type="text" id="beerPicture" name="beerPicture"></input>
        <label className={styles.createLabel} htmlFor="beerTypes">Тип:</label>
 
-          <select className={styles.createSelect} name="beerTypes" id="beerTypes">
-            <option value="Тъмна">Тъмна</option>
-            <option value="Светла">Светла</option>
-            <option value="Вайс">Вайс</option>
-          </select> 
+      <select className={styles.createSelect} name="beerTypes" id="beerTypes">
+        <option value="Тъмна">Тъмна</option>
+        <option value="Светла">Светла</option>
+        <option value="Вайс">Вайс</option>
+      </select> 
 
-          <label className={styles.createLabel} htmlFor="beerOrigin">Произход:</label>
-          <select className={styles.createSelect} name="beerOrigin" id="beerOrigin">
-            <option value="България">България</option>
-            <option value="Внос">Внос</option>
-          </select> 
+      <label className={styles.createLabel} htmlFor="beerOrigin">Произход:</label>
+      <select className={styles.createSelect} name="beerOrigin" id="beerOrigin">
+        <option value="България">България</option>
+        <option value="Внос">Внос</option>
+      </select> 
 
-          <label className={styles.createLabel} htmlFor="alcoholicContent">Алкохолно съдържание:</label>
-          <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"></input>
+      <label className={styles.createLabel} htmlFor="alcoholicContent">Алкохолно съдържание:</label>
+      <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"></input>
           
-          <div className={styles.rating}>
-                {[...Array(5)].map((star, index) => {
-                index += 1;
-                 return (
-                 <button
-                 type="button"
-                key={index}
-                className={index <= (hover || rating) ? "on" : "off"}
-                onClick={function(){
-                setRating(index);
-               
-                 }}
-                onMouseEnter={() => setHover(index)}
-                onMouseLeave={() => setHover(rating)}
-                    >
-                    <span>&#127866;</span>
-                    </button>
+      <div className={styles.rating}>
+        {[...Array(5)].map((star, index) => {
+        index += 1;
+        return (
+        <button
+        type="button"
+        key={index}
+        className={index <= (hover || rating) ? "on" : "off"}
+        onClick={function(){
+        setRating(index);
+        }}
+        onMouseEnter={() => setHover(index)}
+        onMouseLeave={() => setHover(rating)}
+        >
+        <span>&#127866;</span>
+        </button>
         );
-      })}
+        })}
   
-        </div>
+      </div>
 
-          <button type="submit" id="submitBeer">Запази</button>
+      <button type="submit" id="submitBeer">Запази</button>
 
-       </form>
+    </form>
 
        {/* {errors.length>0?<Error errors={errors}/>:<p>it's all good</p>} */}
       </>

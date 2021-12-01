@@ -38,10 +38,8 @@ navigate('/');
 
 async function onUserRating(r){
     let updatedBeer=Object.assign(beer);   
-    updatedBeer.rating.push(r);
-    console.log(beerId)
-    const result= await beerService.updateBeer(beerId, updatedBeer);
-    console.log(result)
+    updatedBeer.rating.push(r); 
+    const result= await beerService.updateBeer(beerId, updatedBeer);  
 }
 
 const ownerButtons=(<>

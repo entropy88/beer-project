@@ -68,9 +68,9 @@ const onBeerUpdate = (e) => {
       <label className={styles.createLabel} htmlFor="beerTypes">Тип:</label>
       <select className={styles.createSelect} name="beerTypes" id="beerTypes"
       defaultValue={beer.type}>
-        <option value="ale">Тъмна</option>
-        <option value="lager">Светла</option>
-        <option value="weiss">Вайс</option>
+        <option value="Тъмна">Тъмна</option>
+        <option value="Светла">Светла</option>
+        <option value="Вайс">Вайс</option>
        </select> 
 
       <label className={styles.createLabel} htmlFor="beerOrigin">Произход:</label>

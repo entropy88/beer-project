@@ -4,16 +4,29 @@
     max-height: 80%;
     margin: 16px auto;
     background-color: white;
-    padding:24px;
+    padding-top:24px;
+    padding-bottom: 0px;
     border-radius: 24px;
     border: 1px solid rgb(100, 100, 100);
     color:rgb(100, 100, 100);
 }
+
+.beerList{
+    padding-top:24px;
+    padding-left: 0px;
+    background-color: #C96E12;
+    border-radius: 24px;
+    margin-bottom: 0px;
+    
+}
 li{
     list-style-type: none;
+    padding-bottom: 8px;
 }
 
 .beerLink{
     text-decoration: none;
-    color:rgb(100, 100, 100);
+    color:#FFF897;
+    font-size: 18px;
+    text-shadow: 2px 1px 2px rgba(99, 99, 99, 1);
 }

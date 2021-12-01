@@ -32,11 +32,11 @@ function Profile() {
        <h1>{userDetails.username}</h1>
        <p>e-mail: {userDetails.email}</p>
        <p>Дата на регистрация: {userDetails.registrationDate}</p>
-       <label>Моите бири:</label>
-       <ul>
+       <h3>Моите бири:</h3>
+       <ul className={styles.beerList}>
          {beers.map(x=><li key={x._id}>
            <Link to={`/beers/${x._id}`} className={styles.beerLink}
-           >{x.title} 
+           ><span>&#127866;</span>{x.title} 
          </Link></li>)}
        </ul>
        </article>

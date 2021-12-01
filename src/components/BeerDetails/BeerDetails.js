@@ -85,8 +85,8 @@ return (
         <article className={styles.beerContent}>
             <p className={styles.description}>Произход: {beer.country}</p>     
             <p className={styles.description}>Тип: {beer.type}</p>    
-            <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}</p>       
-            <p className={styles.description}>Рейтинг: {staticRating}</p>    
+            <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}% vol</p>       
+            {staticRating}
 
             <article className={styles.buttonsRow}>
                 {user._id==beer.ownerId?ownerButtons :''}                  

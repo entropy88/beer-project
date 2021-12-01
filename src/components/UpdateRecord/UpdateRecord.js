@@ -1,7 +1,7 @@
 import styles from "./UpdateRecord.module.css";
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import * as beerService from '../../services/beer';
+import * as beerService from "../../services/beer"; 
 
 import Error from "../Error/Error";
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,8 @@ function UpdateRecord() {
 
     const [beer, setBeer] = useState({});
     const { beerId } = useParams();
+    const [rating, setRating] = useState(0);
+    const [hover, setHover] = useState(0);
 
   const navigate = useNavigate();
 
@@ -25,88 +27,86 @@ function UpdateRecord() {
  
 
 const onBeerUpdate = (e) => {
-    e.preventDefault();
-    let formData = new FormData(e.currentTarget);
+  e.preventDefault();
+  let formData = new FormData(e.currentTarget);
 
-    let title = formData.get('beerName');   
-    let imgUrl = formData.get('beerPicture');
-    let type = formData.get('beerTypes');
-    let country=formData.get('beerOrigin');
-    let alcVol=formData.get('alcoholicContent');
-  
+  let title = formData.get('beerName');   
+  let imgUrl = formData.get('beerPicture');
+  let type = formData.get('beerTypes');
+  let country=formData.get('beerOrigin');
+  let alcVol=formData.get('alcoholicContent');  
 
-    const urlPattern=new RegExp (/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/);
-    if (!urlPattern.test(imgUrl)){
-      console.log("Please use valid url")
-    }
+    // const urlPattern=new RegExp (/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/);
+    // if (!urlPattern.test(imgUrl)){
+    //   console.log("Please use valid url")
+    // }
 
-    const updatedBeer={
-        title,      
-        imgUrl,
-        type,
-        country,
-        alcVol,
-         //dummy
-       packages:"[0.5, 1]",
-       rating: "[3]"
-    }
-    const requestBody={
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedBeer)
-    }
-     
- 
- console.log(requestBody)
+  const updatedBeer=Object.assign(beer);
+  updatedBeer.title=title;
+  updatedBeer.imgUrl=imgUrl;
+  updatedBeer.type=type;
+  updatedBeer.country=country;
+  updatedBeer.alcVol=alcVol;
+  updatedBeer.rating.push(rating);
+    
+  beerService.updateBeer(beerId, updatedBeer)
+    .then(result=>console.log(result))
+     navigate('/');    
 } 
-
-
 
     return (
       <>
-       <form id="beer_form" className={styles.createForm}  onSubmit={()=>onBeerUpdate} method="PUT">
+    <form id="beer_form" className={styles.createForm}  onSubmit={onBeerUpdate} method="POST">
        <label className={styles.createLabel}  htmlFor="beerName">Марка:</label>
        <input className={styles.createInput} type="text" id="beerName" name="beerName"
-       value={beer.title}></input>
+       defaultValue={beer.title}></input>
 
        <label className={styles.createLabel} htmlFor="beerPicture">Изображение:</label>
        <input  className={styles.createInput} type="text" id="beerPicture" name="beerPicture"
-       value={beer.imgUrl}></input>
+       defaultValue={beer.imgUrl}></input>
 
+      <label className={styles.createLabel} htmlFor="beerTypes">Тип:</label>
+      <select className={styles.createSelect} name="beerTypes" id="beerTypes"
+      defaultValue={beer.type}>
+        <option value="ale">Тъмна</option>
+        <option value="lager">Светла</option>
+        <option value="weiss">Вайс</option>
+       </select> 
 
+      <label className={styles.createLabel} htmlFor="beerOrigin">Произход:</label>
+      <select className={styles.createSelect} name="beerOrigin" id="beerOrigin"
+      defaultValue={beer.country}>
+        <option value="България">България</option>
+        <option value="Внос">Внос</option>
+      </select> 
 
-       <label className={styles.createLabel} htmlFor="beerTypes">Тип:</label>
+      <label className={styles.createLabel} htmlFor="alcoholicContent">Алкохолно съдържание:</label>
+      <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"
+      defaultValue={beer.alcVol}></input>
 
-<select className={styles.createSelect} name="beerTypes" id="beerTypes"
- value={beer.type}>
-  <option value="ale">Тъмна</option>
-  <option value="lager">Светла</option>
-  <option value="weiss">Вайс</option>
- </select> 
+<div className={styles.rating}>
+        {[...Array(5)].map((star, index) => {
+        index += 1;
+        return (
+        <button
+        type="button"
+        key={index}
+        className={index <= (hover || rating) ? "on" : "off"}
+        onClick={function(){
+        setRating(index);
+        }}
+        onMouseEnter={() => setHover(index)}
+        onMouseLeave={() => setHover(rating)}
+        >
+        <span>&#127866;</span>
+        </button>
+        );
+        })}
+  
+      </div>
 
- <label className={styles.createLabel} htmlFor="beerOrigin">Произход:</label>
- <select className={styles.createSelect} name="beerOrigin" id="beerOrigin"
- value={beer.country}>
-  <option value="България">България</option>
-  <option value="Внос">Внос</option>
- </select> 
-
- <label className={styles.createLabel} htmlFor="alcoholicContent">Алкохолно съдържание:</label>
- <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"
- value={beer.alcVol}></input>
-
-
-<article className={styles.stars}>
- <span><i className="fas fa-beer"></i></span>
- <span><i className="fas fa-beer"></i></span>
- <span><i className="fas fa-beer"></i></span>
-
-</article>
-
-
-<button type="submit" id="submitBeer">Запази</button>
-
-       </form>
+      <button type="submit" id="submitBeer">Запази</button>
+  </form>
 
      
       </>

@@ -4,11 +4,10 @@ import {Link} from 'react-router-dom';
 
 function BeerCard({beer}) {
   const sum = beer.rating.reduce(function(a, b){
-    return a + b;
-}, 0);
+  return a + b;
+  }, 0);
 
   const rating=Math.round(sum/beer.rating.length);
-
   
     return (
     <>

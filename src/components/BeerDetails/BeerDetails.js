@@ -48,6 +48,36 @@ const ownerButtons=(<>
 <button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
 <button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
 </>)
+
+const staticRating=(
+    <p>{[...Array(rating)].map((e, i) => {
+        return <span key={i}>&#127866;</span>
+        })}</p>
+)
+
+const ratingButtons=(
+    <div className={styles.userRating}>
+    {[...Array(5)].map((star, index) => {
+    index += 1;
+     return (
+     <button
+     type="button"
+    key={index}
+    className={index <= (hover || rating) ? "on" : "off", styles.starButton}
+    onClick={function(){
+    setUserRating(index);
+    onUserRating(index)
+     }}
+    onMouseEnter={() => setHover(index)}
+    onMouseLeave={() => setHover(rating)}
+        >
+        <span>&#127866;</span>
+        </button>
+);
+})}
+
+</div>
+)
     
 return (
     <section id="details-page" className={styles.details}>
@@ -58,33 +88,14 @@ return (
             <p className={styles.description}>Произход: {beer.country}</p>     
             <p className={styles.description}>Тип: {beer.type}</p>    
             <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}</p>       
-            <p className={styles.description}>Рейтинг: {rating}</p>    
+            <p className={styles.description}>Рейтинг: {staticRating}</p>    
 
             <article className={styles.buttonsRow}>
-                {user._id==beer.ownerId?ownerButtons :""}                  
+                {user._id==beer.ownerId?ownerButtons :''}                  
             </article>
 
-            <div className={styles.userRating}>
-                {[...Array(5)].map((star, index) => {
-                index += 1;
-                 return (
-                 <button
-                 type="button"
-                key={index}
-                className={index <= (hover || rating) ? "on" : "off", styles.starButton}
-                onClick={function(){
-                setUserRating(index);
-                onUserRating(index)
-                 }}
-                onMouseEnter={() => setHover(index)}
-                onMouseLeave={() => setHover(rating)}
-                    >
-                    <span>&#127866;</span>
-                    </button>
-        );
-      })}
-  
-        </div>
+            {user._id?ratingButtons:''}
+           
         </article>
         </div>
     </section>

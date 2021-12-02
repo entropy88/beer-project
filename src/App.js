@@ -58,15 +58,14 @@ function App() {
 
         <Routes>
             <Route path="/*" element={<Home/>} />
-            <Route path="/login" element={<Login/>} />
-            
+            <Route path="/login" element={<Login/>} />            
             <Route path="/register" element={<Register/>} />
             <Route element={<RequireAuth />}>
             <Route path="/profile" element={<Profile />} />
-           
+            <Route path="/create" element={<CreateRecord/>} />
           </Route>
            
-            <Route path="/create" element={<CreateRecord/>} />
+           
             <Route path="/update/:beerId" element={<UpdateRecord/>} />
             <Route path="/beers/:beerId" element={<BeerDetails/>} />
           </Routes>

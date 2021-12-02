@@ -41,40 +41,43 @@ async function onUserRating(r){
     updatedBeer.rating.push(r); 
     const result= await beerService.updateBeer(beerId, updatedBeer);  
 }
-
-const ownerButtons=(<>
-<button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
-<button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
-</>)
-
 const staticRating=(
     <p>{[...Array(rating)].map((e, i) => {
         return <span key={i}>&#127866;</span>
         })}</p>
 )
 
+const ownerButtons=(<>
+{staticRating}
+<button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
+<button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
+
+</>)
+
+
+
 const ratingButtons=(
-    <div className={styles.userRating}>
+    <div className={styles.rating}>
     {[...Array(5)].map((star, index) => {
     index += 1;
-     return (
-     <button
-     type="button"
+    return (
+    <button 
+    type="button"
     key={index}
-    className={index <= (hover || rating) ? "on" : "off"}
+    className={  index <= (hover || rating) ? styles.on : styles.off }
     onClick={function(){
-    setUserRating(index);
-    onUserRating(index)
-     }}
+    setRating(index);
+    onUserRating(index);
+    }}
     onMouseEnter={() => setHover(index)}
     onMouseLeave={() => setHover(rating)}
-        >
-        <span>&#127866;</span>
-        </button>
-);
-})}
+    >
+    <span>&#127866;</span>
+    </button>
+    );
+    })}
 
-</div>
+  </div>
 )
     
 return (
@@ -86,7 +89,7 @@ return (
             <p className={styles.description}>Произход: {beer.country}</p>     
             <p className={styles.description}>Тип: {beer.type}</p>    
             <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}% vol</p>       
-            {staticRating}
+          
 
             <article className={styles.buttonsRow}>
                 {user._id==beer.ownerId?ownerButtons :''}                  

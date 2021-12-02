@@ -2,17 +2,16 @@
 @import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
 
 
-.createForm{
-   
-   display: flex;
-    max-width: 60%;
-    margin:16px auto;
-    flex-direction: column;
-    background-color: #C96E12;
-    padding:24px;
-    border-radius: 24px;
-    border: 1px solid rgb(100, 100, 100);
-    color:white;
+.createForm{  
+  display: flex;
+  max-width: 60%;
+  margin:16px auto;
+  flex-direction: column;
+  background-color: #C96E12;
+  padding:24px;
+  border-radius: 24px;
+  border: 1px solid rgb(100, 100, 100);
+  color:white;
 }
 
 .createSelect{
@@ -25,8 +24,6 @@
   border-radius: 12px;
   color:rgb(100, 100, 100);
 }
-
-
 
 .createInput{
     background-color: #FFF897;
@@ -54,7 +51,6 @@ button{
     flex-direction: row;
     align-items: flex-end;
 }
-
 
 .on {
     background-color: #C96E12;

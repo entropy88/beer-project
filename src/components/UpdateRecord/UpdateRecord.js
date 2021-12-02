@@ -88,10 +88,10 @@ const onBeerUpdate = (e) => {
         {[...Array(5)].map((star, index) => {
         index += 1;
         return (
-        <button
+        <button 
         type="button"
         key={index}
-        className={index <= (hover || rating) ? "on" : "off"}
+        className={  index <= (hover || rating) ? styles.on : styles.off }
         onClick={function(){
         setRating(index);
         }}
@@ -102,8 +102,7 @@ const onBeerUpdate = (e) => {
         </button>
         );
         })}
-  
-      </div>
+        </div>
 
       <button type="submit" id="submitBeer">Запази</button>
   </form>

@@ -60,3 +60,18 @@
 button{
     font-family: 'Lobster', serif;
 }
+
+.rating{  
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.on {
+    background-color: #C96E12;
+  }
+  .off {
+    background-color: #FFF897;
+  }

@@ -42,7 +42,7 @@ async function onUserRating(r){
     const result= await beerService.updateBeer(beerId, updatedBeer);  
 }
 const staticRating=(
-    <p>{[...Array(rating)].map((e, i) => {
+    <p className={styles.rating}>{[...Array(rating)].map((e, i) => {
         return <span key={i}>&#127866;</span>
         })}</p>
 )
@@ -91,7 +91,7 @@ return (
             <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}% vol</p>       
           
             {!user._id?staticRating:''}
-            
+
             <article className={styles.buttonsRow}>
                 {user._id==beer.ownerId?ownerButtons :''}                  
             </article>

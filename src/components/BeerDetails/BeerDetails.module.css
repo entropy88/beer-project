@@ -52,13 +52,7 @@ h3{
     margin-bottom: 4px;
 }
 
-.buttonsRow{
-    display: flex;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
+
 
 .beerContentLabel{
     font-weight: bold;
@@ -66,8 +60,18 @@ h3{
     padding-right: 1rem;
 }
 
+.buttonsRow{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
 
 .rating{  
+    flex-basis: 100%;
     margin-top: 16px;
     margin-bottom: 16px;
     display: flex;

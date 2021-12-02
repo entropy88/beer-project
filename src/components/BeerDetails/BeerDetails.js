@@ -90,12 +90,13 @@ return (
             <p className={styles.description}>Тип: {beer.type}</p>    
             <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}% vol</p>       
           
-
+            {!user._id?staticRating:''}
+            
             <article className={styles.buttonsRow}>
                 {user._id==beer.ownerId?ownerButtons :''}                  
             </article>
 
-            {user._id&& user._id!==beer.ownerId?ratingButtons:''}
+            {user._id&& user._id!==beer.ownerId?ratingButtons:''}           
            
         </article>
         </div>

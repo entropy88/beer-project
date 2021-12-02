@@ -8,6 +8,7 @@ import styles from "./Navigation.module.css"
 
 export default function Navigation() {
   const {user} =useContext(AuthContext);
+  const {logout}=useContext(AuthContext);
 
   const guestLinks=(
     <><li><Link to="/login">Вход</Link></li>
@@ -15,7 +16,9 @@ export default function Navigation() {
   );
   const userLinks=(
     <>  <li><Link to="/profile">Профил на {user.username}</Link></li>
-    <li><Link to="/create">Добави бира</Link></li> </>
+    <li><Link to="/create">Добави бира</Link></li> 
+   <li> <Link to="#" onClick={()=>logout()}>Изход</Link></li>
+    </>
   );
 
  

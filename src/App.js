@@ -25,12 +25,12 @@ function App() {
     console.log(user)
   }
 
-  const onLogout = () => {
-
+  const logout = () => {
+     setUser({});  
+   
   };
 
-  function RequireAuth() {
-   
+  function RequireAuth() {   
     let location = useLocation();
   
     if (!user.username) {
@@ -46,7 +46,7 @@ function App() {
 
 
   return (
-    <AuthContext.Provider value={{user, login}}>
+    <AuthContext.Provider value={{user, login, logout}}>
     <div className="App"> 
     
       <header className="mainHeader">

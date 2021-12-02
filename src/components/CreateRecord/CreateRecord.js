@@ -94,10 +94,10 @@ function CreateRecord() {
         {[...Array(5)].map((star, index) => {
         index += 1;
         return (
-        <button
+        <button 
         type="button"
         key={index}
-        className={index <= (hover || rating) ? "on" : "off"}
+        className={  index <= (hover || rating) ? styles.on : styles.off }
         onClick={function(){
         setRating(index);
         }}

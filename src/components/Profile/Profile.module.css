@@ -15,7 +15,8 @@
     padding-top:24px;
     padding-left: 0px;
     background-color: #C96E12;
-    border-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
     margin-bottom: 0px;
     
 }

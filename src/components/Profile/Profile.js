@@ -36,7 +36,7 @@ function Profile() {
        <ul className={styles.beerList}>
          {beers.map(x=><li key={x._id}>
            <Link to={`/beers/${x._id}`} className={styles.beerLink}
-           ><span>&#127866;</span>{x.title} 
+           ><span>&#127866;   </span>{x.title} 
          </Link></li>)}
        </ul>
        </article>

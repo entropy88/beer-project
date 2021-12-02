@@ -61,7 +61,7 @@ const ratingButtons=(
      <button
      type="button"
     key={index}
-    className={index <= (hover || rating) ? "on" : "off", styles.starButton}
+    className={index <= (hover || rating) ? "on" : "off"}
     onClick={function(){
     setUserRating(index);
     onUserRating(index)

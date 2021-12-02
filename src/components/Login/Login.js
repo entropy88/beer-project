@@ -6,7 +6,7 @@ import {useContext} from "react";
 import {AuthContext} from "../../Contexts/AuthContext"
 
  function Login() {
-   const { login }= useContext(AuthContext)
+  const { login }= useContext(AuthContext)
   const navigate = useNavigate();
 
  async function onLoginHandler(e){
@@ -19,8 +19,7 @@ import {AuthContext} from "../../Contexts/AuthContext"
   .then((data)=>{
     //check if password is correct!
     login(data);
-    console.log(data)
-    navigate('/')
+     navigate('/')
   })
   .catch(err=>{
     console.log(err)
@@ -36,15 +35,12 @@ import {AuthContext} from "../../Contexts/AuthContext"
 //     alert("wrong usename or password!");
 //   }  
         }
-        
 
-  
-    return (
-      <div className={styles.form}>
-  
+return (
+  <div className={styles.form}>  
     <div className={styles.title}>Вход</div>
-
     <div className={styles.subtitle}>Нямаш профил? Регистрация</div>
+    
     <form onSubmit={onLoginHandler} method="POST">
      
       <div className={styles.inputContainer}>
@@ -53,14 +49,11 @@ import {AuthContext} from "../../Contexts/AuthContext"
         <label htmlFor="username" className={styles.placeholder}>Потребителско име</label>
       </div>
 
-
       <div className={styles.inputContainer}>
         <input id="password" className={styles.input} name="password" type="password" placeholder=" " />
         <div className={styles.cut}></div>
         <label htmlFor="password" className={styles.placeholder}>Парола</label>
-      </div>
-
-     
+      </div>     
       <button >Вход</button>
 
       </form>

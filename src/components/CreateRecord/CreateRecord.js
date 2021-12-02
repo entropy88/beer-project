@@ -58,8 +58,6 @@ function CreateRecord() {
       rating: [rating]
     })
         .then(result => { 
-          console.log(result._id+ "new");
-          //HMMMM...
           navigate('/');     
         })
       } 

@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { AuthContext } from './Contexts/AuthContext';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
@@ -29,6 +29,21 @@ function App() {
 
   };
 
+  function RequireAuth() {
+   
+    let location = useLocation();
+  
+    if (!user.username) {
+      // Redirect them to the /login page, but save the current location they were
+      // trying to go to when they were redirected. This allows us to send them
+      // along to that page after they login, which is a nicer user experience
+      // than dropping them off on the home page.
+      return <Navigate to="/login" state={{ from: location }} />;
+    }
+  
+    return <Outlet />;
+  }
+
 
   return (
     <AuthContext.Provider value={{user, login}}>
@@ -46,7 +61,10 @@ function App() {
             <Route path="/login" element={<Login/>} />
             
             <Route path="/register" element={<Register/>} />
-            <Route path="/profile" element={<Profile/>} />
+            <Route element={<RequireAuth />}>
+            <Route path="/profile" element={<Profile />} />
+           
+          </Route>
            
             <Route path="/create" element={<CreateRecord/>} />
             <Route path="/update/:beerId" element={<UpdateRecord/>} />

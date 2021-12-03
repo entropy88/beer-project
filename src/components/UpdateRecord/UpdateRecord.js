@@ -1,6 +1,8 @@
 import styles from "./UpdateRecord.module.css";
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useContext } from "react/cjs/react.development";
+import {AuthContext} from "../../Contexts/AuthContext";
 import * as beerService from "../../services/beer"; 
 
 import Error from "../Error/Error";
@@ -8,11 +10,11 @@ import { useNavigate } from 'react-router-dom';
 
 function UpdateRecord() {
 
-    const [beer, setBeer] = useState({});
-    const { beerId } = useParams();
-    const [rating, setRating] = useState(0);
-    const [hover, setHover] = useState(0);
-
+  const {user} =useContext(AuthContext);
+  const [beer, setBeer] = useState({});
+  const { beerId } = useParams();
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const onBeerUpdate = (e) => {
   updatedBeer.type=type;
   updatedBeer.country=country;
   updatedBeer.alcVol=alcVol;
-  updatedBeer.rating.push(rating);
+  updatedBeer.rating.push({userRated:user._id, value:rating});
     
   beerService.updateBeer(beerId, updatedBeer)
     .then(result=>console.log(result))

@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 
 function BeerCard({beer}) {
   const valuesArr=beer.rating.map(x=>x.value);
-  console.log(valuesArr)
-  console.log(valuesArr)
+  console.log(valuesArr);
+
     const sum = valuesArr.reduce(function(a, b){
         return a + b;
         }, 0);

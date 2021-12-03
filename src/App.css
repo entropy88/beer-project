@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-body{
-  background-color:#FFF897;
+body{ 
   color:rgb(37, 36, 36);
 }
 
-.mainHeader{
-  background-color: #C96E12;
-  color:#FFF897;
+.mainHeader{  
+  color:#C96E12;
   text-shadow: 2px 1px 2px rgba(99, 99, 99, 1);
   display:flex;
   align-items: center;

@@ -23,9 +23,14 @@ export default function Navigation() {
 
  
   return (  
-        <nav>
+        <nav>   
+          <article className={styles.logo}>
+          <img src="Beer-icon.png"  className="headerImg" alt="beer"></img>
+          <h1>Бирометър</h1>
+          </article>     
+    
             <ul className={styles.topNav}>
-                <li><Link to="/">Начало</Link></li>
+                              <li><Link to="/">Начало</Link></li>
                 {user.username
                 ?userLinks
                 :guestLinks}

@@ -47,14 +47,8 @@ function App() {
 
   return (
     <AuthContext.Provider value={{user, login, logout}}>
-    <div className="App"> 
-    
-      <header className="mainHeader">
-        <img src="Beer-icon.png"  className="headerImg" alt="beer"></img>
-        <h1>Бирометър</h1>
-    
-      </header>
-        <Navigation/>
+    <div className="App">    
+      <Navigation/>
 
         <Routes>
             <Route path="/*" element={<Home/>} />

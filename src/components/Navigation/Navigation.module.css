@@ -1,17 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-.topNav{
-  background-color: #C96E12;
-  margin:0;
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.topNav{  
+    flex-grow: 1;
+    margin:0;
     display: flex;
     list-style: none;
     justify-content: space-evenly;
-    padding-bottom: 16px;
+    align-items: center;      
+}
+
+.logo{
+  display: flex;
+  font-size: 24px;
+  color:#C96E12;   
 }
 
 .topNav li a{
     font-size: 24px;
-    color:#FFF897;
-    text-shadow: 2px 1px 2px rgba(99, 99, 99, 1);
+    color:#C96E12;   
     font-family: 'Lobster', serif ;
     text-decoration: none;
 }

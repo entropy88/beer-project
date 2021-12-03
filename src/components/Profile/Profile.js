@@ -33,11 +33,14 @@ function Profile() {
       <h1>{userDetails.username}</h1>
       <p>e-mail: {userDetails.email}</p>
       <p>Дата на регистрация: {userDetails.registrationDate}</p>
-      <h3>Моите бири:</h3>
-      <div className={styles.beersContainer}>     
+      {beers.length>0?<h3>Моите бири:</h3>:'' }
+        
+      <div className={styles.beersContainer}> 
+       
         { beers.length > 0 
-                ? beers.map(x => <BeerCard key={x._id} beer={x}  />)
-                : <h3>Все още нямате създадени бири!</h3>
+                ? beers.map(x =>
+                <BeerCard key={x._id} beer={x}  />)
+                : <h3 className={styles.noBeers}>Все още нямате създадени бири!</h3>
         }
       </div>  
     </article>

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 .form {
   margin: 16px auto;  
@@ -11,21 +10,24 @@
   }
   
   .title {    
-    font-family: 'Lobster',serif;
+    color:#F97C2A;
     font-size: 36px;
     font-weight: 600;
     margin-top: 30px;
   }
+
+  .subtitle {
+    font-size: 16px;    
+    margin-top: 10px;  
+    font-style: italic;
+  }
+
   .navigateLink{
     color:#F97C2A;
+    font-weight: 600;
+    font-style: normal;
   }
   
-  .subtitle {
-    font-family: sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 10px;
-  }
   
   .inputContainer {
     margin-top: 20px;
@@ -40,6 +42,7 @@
     border: none;
     outline: none;    
     width: 100%;
+    color:rgb(100, 100, 100);
   } 
   
   .placeholder {

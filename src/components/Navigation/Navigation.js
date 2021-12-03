@@ -11,13 +11,16 @@ export default function Navigation() {
   const {logout}=useContext(AuthContext);
 
   const guestLinks=(
-    <><li><Link to="/login">Вход</Link></li>
-    <li><Link to="/register">Регистрация</Link></li></>
+    <>
+    <li><Link to="/login">Вход</Link></li>
+    <li><Link to="/register">Регистрация</Link></li>
+    </>
   );
   const userLinks=(
-    <>  <li><Link to="/profile">Профил на {user.username}</Link></li>
+    <>  
+    <li><Link to="/profile">Профил на {user.username}</Link></li>
     <li><Link to="/create">Добави бира</Link></li> 
-   <li> <Link to="#" onClick={()=>logout()}>Изход</Link></li>
+    <li> <Link to="#" onClick={()=>logout()}>Изход</Link></li>
     </>
   );
 
@@ -30,7 +33,7 @@ export default function Navigation() {
           </article>     
     
             <ul className={styles.topNav}>
-                              <li><Link to="/">Начало</Link></li>
+                <li><Link to="/">Бири</Link></li>
                 {user.username
                 ?userLinks
                 :guestLinks}

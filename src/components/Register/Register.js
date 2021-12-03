@@ -71,7 +71,7 @@ function Register() {
         <input id="email" type="email" name="email" placeholder=" " />      
       </div>
 
-      <button className={styles.submitButton} type="submit" >Вписване</button>
+      <button className={styles.submitButton} type="submit" >Регистрация</button>
 
       </form>
     </div>

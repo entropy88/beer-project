@@ -37,7 +37,7 @@ function Profile() {
        <div className={styles.beerContainer}>     
         { beers.length > 0 
                 ? beers.map(x => <BeerCard key={x._id} beer={x}  />)
-                : <h3>No beers yet</h3>
+                : <h3>Все още нямате създадени бири!</h3>
             }
         </div>  
       </article>

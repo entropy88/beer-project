@@ -55,7 +55,7 @@ function CreateRecord() {
       type,
       country,
       alcVol,     
-      rating: [rating]
+      rating: [{userRated:user._id, value:rating}]
     })
         .then(result => { 
           navigate('/');     

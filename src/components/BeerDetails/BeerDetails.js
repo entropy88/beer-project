@@ -12,35 +12,53 @@ const BeerDetails = () => {
     const [beer, setBeer] = useState({});
     const [rating, setRating] = useState(0);
     const [userRating, setUserRating] = useState(0);
+    const [usersRated, setUsersRated] =useState([]);
     const [hover, setHover] = useState(0);
     const { beerId } = useParams();
 
     const {user} =useContext(AuthContext);
     const navigate = useNavigate();
+
+    //extracts the id's of the users that rated the beers
+    function getUsersThatRated (arr){
+        const users=arr.map(x=>x.userRated)
+        return users;
+    }
+
+    //extracts the average rating
+    function getRating(arr){
+        const valuesArr=arr.map(x=>x.value);
+        const sum = valuesArr.reduce(function(a, b){
+            return a + b;
+            }, 0);
+        const average= Math.round(sum/arr.length);
+        return average;        
+    }
    
 
-useEffect(async () => {
-    let beerResult = await beerService.getOne(beerId);
-    setBeer(beerResult);
+useEffect(() => {
+   beerService.getOne(beerId)
+    .then(beerResult=>{
+       setBeer(beerResult)
+       setUsersRated(getUsersThatRated(beerResult.rating)) 
+       setRating(getRating(beerResult.rating))
+    })   
 
-    const sum = beerResult.rating.reduce(function(a, b){
-        return a + b;
-        }, 0);
-    
-    setRating(Math.round(sum/beerResult.rating.length));
     }, []);    
   
 function onBeerDelete(id){
-console.log('proceed to delete', id);
 beerService.removeBeer(id);
 navigate('/');
- }
+}
 
 async function onUserRating(r){
     let updatedBeer=Object.assign(beer);   
-    updatedBeer.rating.push(r); 
-    const result= await beerService.updateBeer(beerId, updatedBeer);  
+    updatedBeer.rating.push({userRated:user._id, value:r}); 
+    const result= await beerService.updateBeer(beerId, updatedBeer);
+    setUserRating(r);  
 }
+
+
 const staticRating=(
     <p className={styles.rating}>{[...Array(rating)].map((e, i) => {
         return <span key={i}>&#127866;</span>
@@ -48,13 +66,20 @@ const staticRating=(
 )
 
 const ownerButtons=(<>
-{staticRating}
 <button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
 <button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
 
 </>)
 
+//check if current user already rated
+const userAlreadyRated=usersRated.includes(user._id);
 
+//check if current user can rate
+
+let userCanRate=user.hasOwnProperty('_id');
+if (user._id==beer.ownerId || userAlreadyRated){
+    userCanRate=false;
+}
 
 const ratingButtons=(
     <div className={styles.rating}>
@@ -90,13 +115,13 @@ return (
             <p className={styles.description}>Тип: {beer.type}</p>    
             <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}% vol</p>       
           
-            {!user._id?staticRating:''}
-
+        
             <article className={styles.buttonsRow}>
                 {user._id==beer.ownerId?ownerButtons :''}                  
             </article>
 
-            {user._id&& user._id!==beer.ownerId?ratingButtons:''}           
+            {userCanRate?ratingButtons:staticRating}
+                  
            
         </article>
         </div>

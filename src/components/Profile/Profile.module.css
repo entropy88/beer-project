@@ -11,9 +11,10 @@
     color:rgb(100, 100, 100);
 }
 
-.beerContainer{
-    padding-top:24px;
-    padding-left: 0px;
+.beersContainer{
+    display: flex;
+    justify-content: space-between;
+    padding:16px;
     background-color: #C96E12;
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;

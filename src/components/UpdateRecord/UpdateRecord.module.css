@@ -1,37 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
-
-
-.createForm{
-   
-   display: flex;
+.createForm{   
+    display: flex;
     max-width: 60%;
     margin:16px auto;
     flex-direction: column;
-    background-color: #C96E12;
-    padding:24px;
-    border-radius: 24px;
-    border: 1px solid rgb(100, 100, 100);
-    color:white;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    color:rgb(37, 36, 36);
+    padding:24px;    
 }
 
 .createSelect{
     margin-top: 16px;
-    margin-bottom:8px;
-    background-color: #FFF897;
+    margin-bottom:8px;    
     font-size: 18px;
     padding: 16px;
-   border:none;
-   border-radius: 12px;
-   color:rgb(100, 100, 100);
+    border:none;
+    border-radius: 12px;
+    color:rgb(100, 100, 100);
 }
 
-
-
-.createInput{
-    background-color: #FFF897;
-    font-size: 18px;
-    padding: 16px;
+.createInput{   
+   font-size: 18px;
+   padding: 16px;
    border:none;
    border-radius: 12px;
    color:rgb(100, 100, 100);
@@ -49,16 +38,9 @@
     flex-wrap: wrap;
 }
 
-.packaging_item{
-    flex-basis: 30%;
- }
 
 .stars{
     display: flex;
-}
-
-button{
-    font-family: 'Lobster', serif;
 }
 
 .rating{  
@@ -70,8 +52,8 @@ button{
 }
 
 .on {
-    background-color: #C96E12;
+    background-color: #F97C2A;
   }
   .off {
-    background-color: #FFF897;
+    background-color: #FFE0A3;
   }

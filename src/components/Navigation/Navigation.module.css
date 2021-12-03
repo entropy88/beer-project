@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 nav{
   display: flex;
@@ -19,12 +18,11 @@ nav{
 .logo{
   display: flex;
   font-size: 24px;
-  color:#C96E12;   
+  color:#F97C2A;   
 }
 
 .topNav li a{
     font-size: 24px;
-    color:#C96E12;   
-    font-family: 'Lobster', serif ;
+    color:#F97C2A;      
     text-decoration: none;
 }

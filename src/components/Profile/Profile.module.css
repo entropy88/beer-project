@@ -14,10 +14,10 @@
     display: flex;
     justify-content: space-between;
     padding:16px;
-    background-color: #C96E12;  
-    margin-bottom: 0px;
-    
+    background-color: #F97C2A;  
+    margin-bottom: 0px;    
 }
+
 li{
     list-style-type: none;
     padding-bottom: 8px;

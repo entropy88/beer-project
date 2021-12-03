@@ -83,10 +83,10 @@ h3{
     align-items: flex-end;
 }
 
-
 .on {
-    background-color: #C96E12;
+    background-color: #F97C2A;
   }
-  .off {
-    background-color: #FFF897;
+
+.off {
+    background-color: #FFE0A3;
   }

@@ -24,8 +24,6 @@ function UpdateRecord() {
       }
       fetchData()
 }, [beerId]);
-
-
  
 
 const onBeerUpdate = (e) => {
@@ -57,7 +55,7 @@ const onBeerUpdate = (e) => {
 } 
 
     return (
-      <>
+  <>
     <form id="beer_form" className={styles.createForm}  onSubmit={onBeerUpdate} method="POST">
        <label className={styles.createLabel}  htmlFor="beerName">Марка:</label>
        <input className={styles.createInput} type="text" id="beerName" name="beerName"
@@ -86,7 +84,7 @@ const onBeerUpdate = (e) => {
       <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"
       defaultValue={beer.alcVol}></input>
 
-<div className={styles.rating}>
+      <div className={styles.rating}>
         {[...Array(5)].map((star, index) => {
         index += 1;
         return (
@@ -104,13 +102,11 @@ const onBeerUpdate = (e) => {
         </button>
         );
         })}
-        </div>
+      </div>
 
       <button type="submit" id="submitBeer">Запази</button>
-  </form>
-
-     
-      </>
+    </form>     
+  </>
     );
   }
   

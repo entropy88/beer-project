@@ -1,5 +1,6 @@
 import { useState } from "react";
-import styles from "./Login.module.css"
+import styles from "./Login.module.css";
+import {Link} from "react-router-dom"
 import {getUser} from "../../services/auth";
 import { useNavigate } from 'react-router-dom';
 import {useContext} from "react";
@@ -39,22 +40,20 @@ import {AuthContext} from "../../Contexts/AuthContext"
 return (
   <div className={styles.form}>  
     <div className={styles.title}>Вход</div>
-    <div className={styles.subtitle}>Нямаш профил? Регистрация</div>
+    <div className={styles.subtitle}>Нямаш профил? <Link className={styles.navigateLink} to="/register" >Регистрация</Link></div>
     
     <form onSubmit={onLoginHandler} method="POST">
      
       <div className={styles.inputContainer}>
-        <input id="username" className={styles.input} name="username" type="text" placeholder=" " />
-        <div className={styles.cut}></div>
         <label htmlFor="username" className={styles.placeholder}>Потребителско име</label>
+        <input id="username" name="username" type="text" placeholder=" " />              
       </div>
 
       <div className={styles.inputContainer}>
-        <input id="password" className={styles.input} name="password" type="password" placeholder=" " />
-        <div className={styles.cut}></div>
         <label htmlFor="password" className={styles.placeholder}>Парола</label>
+        <input id="password" name="password" type="password" placeholder=" " />       
       </div>     
-      <button >Вход</button>
+      <button className={styles.submitButton}>Вход</button>
 
       </form>
     </div>

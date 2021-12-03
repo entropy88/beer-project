@@ -3,13 +3,12 @@
 }
 
 .details{
-    width: 80%;
-    max-height: 80%;
     margin: 16px auto;
+    display: flex;    
+    width: 90%;      
     background-color: white;
     padding:24px;
-    border-radius: 24px;
-    border: 1px solid rgb(100, 100, 100);
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     color:rgb(100, 100, 100);
 }
 
@@ -23,22 +22,27 @@ h3{
 .beerWrapper{   
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-basis: 28%; 
+    justify-content: space-evenly;
+    margin:auto;  
+    flex-basis: 80%; 
 }
 
 .imgWrapper {
-   flex-basis: 50%;
+    flex-basis: 50%;   
+    display: flex;
+    justify-content: flex-end;   
+    margin-right: 36px;   
 }
 
 .imgWrapper img{
-    object-fit: cover;
+    object-fit: cover;    
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
-.beerContent{
+.beerContent{   
     color:#4F5054;
-    padding-left:24px;
+    margin-left: 36px;
+    align-items: center;
     flex-basis: 50%;
     flex-grow: 1;
     display: flex;
@@ -52,8 +56,6 @@ h3{
     margin-bottom: 4px;
 }
 
-
-
 .beerContentLabel{
     font-weight: bold;
     line-height: 2rem;
@@ -62,6 +64,8 @@ h3{
 
 .buttonsRow{
     display: flex;
+    width: 100%;    
+    justify-content: space-between;
     flex-wrap: wrap;
     margin-right: auto;
     padding-top: 4px;

@@ -66,9 +66,8 @@ const staticRating=(
 )
 
 const ownerButtons=(<>
-<button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
 <button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
-
+<button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
 </>)
 
 //check if current user already rated
@@ -106,22 +105,20 @@ const ratingButtons=(
 )
     
 return (
-    <section id="details-page" className={styles.details}>
-        <h3>{beer.title}</h3>
+    <section id="details-page" className={styles.details}>     
         <div className={styles.beerWrapper} >
         <article className={styles.imgWrapper}> <img src={beer.imgUrl}></img></article>
         <article className={styles.beerContent}>
+        <h3>{beer.title}</h3>
             <p className={styles.description}>Произход: {beer.country}</p>     
             <p className={styles.description}>Тип: {beer.type}</p>    
             <p className={styles.description}>Алкохолно съдържание: {beer.alcVol}% vol</p>       
           
-        
+            {userCanRate?ratingButtons:staticRating}    
+
             <article className={styles.buttonsRow}>
                 {user._id==beer.ownerId?ownerButtons :''}                  
-            </article>
-
-            {userCanRate?ratingButtons:staticRating}
-                  
+            </article>                      
            
         </article>
         </div>

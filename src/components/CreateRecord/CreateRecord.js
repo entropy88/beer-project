@@ -9,18 +9,23 @@ import { useNavigate } from 'react-router-dom';
 
 function CreateRecord() {
  
-  // const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
-  const {user} =useContext(AuthContext);
-
+  const {user} =useContext(AuthContext);  
+  const [errors,setErrors]=useState([])
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
 
-  // function onErrors(err){
-  //   setErrors(errors.concat(err));
-  //   console.log('error pushed',err)
-  //  console.log(errors)
-  // }
+  
+  function onErrors(err){
+    setErrors(oldArray => [...oldArray, err]);
+    const uniqueErrors=[];
+    errors.forEach(e=>{
+      if (!uniqueErrors.includes(e)){
+        uniqueErrors.push(e)
+      }
+      setErrors([...uniqueErrors]);
+    })
+  }
 
 
   const onBeerCreate = (e) => {
@@ -33,20 +38,29 @@ function CreateRecord() {
     let country=formData.get('beerOrigin');
     let alcVol=formData.get('alcoholicContent');
 
-   //validation
-    // if (title.length<3){
-    //   onErrors("Title must be atleast 3 characters!")
-    // }
+   
+    if (title.length<3){
+      onErrors("Марката трябва да е поне 3 символа!");
+    } else {
+      console.log('title is fine')
+    }
 
-    // const urlPattern=new RegExp (/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/);
+    const urlPattern=new RegExp (/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/ig);
+    console.log(urlPattern.test(imgUrl))
+    if (!urlPattern.test(imgUrl)){
+      onErrors("Невалиден линк!");     
+    }
 
-    // if (!urlPattern.test(imgUrl)){
-    //   onErrors("Please use valid url")
-    // }
+    if (!alcVol ||Number(alcVol)<0){
+      onErrors("Невалидно алкохолно съдържание!");    
+    }
 
+    if(rating<1){
+     onErrors("Моля дайте първоначален рейтинг!");
+    }
     // console.log(errors)
     
-//     if (errors.length<1){    
+    if (errors.length<1){    
 
     beerService.create({
       ownerId:user._id,
@@ -56,21 +70,23 @@ function CreateRecord() {
       country,
       alcVol,     
       rating: [{userRated:user._id, value:rating}]
-    })
+      })
         .then(result => { 
           navigate('/');     
         })
-      } 
-  // }
+      } else {
+        console.log(errors)
 
+      }
+    }
 
     return (
       <>
     <form id="beer_form" className={styles.createForm}  onSubmit={onBeerCreate} method="POST">
        <label className={styles.createLabel}  htmlFor="beerName">Марка:</label>
-       <input className={styles.createInput} type="text" id="beerName" name="beerName"></input>
+       <input className={styles.createInput} type="text" id="beerName" required name="beerName"></input>
        <label className={styles.createLabel} htmlFor="beerPicture">Изображение:</label>
-       <input  className={styles.createInput} type="text" id="beerPicture" name="beerPicture"></input>
+       <input  className={styles.createInput} type="text" id="beerPicture" required name="beerPicture"></input>
        <label className={styles.createLabel} htmlFor="beerTypes">Тип:</label>
 
       <select className={styles.createSelect} name="beerTypes" id="beerTypes">
@@ -108,6 +124,7 @@ function CreateRecord() {
         })}
   
       </div>
+      {errors.length>0?<Error errors={errors}/>:""}
 
       <button type="submit" id="submitBeer">Запази</button>
 

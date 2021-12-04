@@ -13,14 +13,24 @@ function UpdateRecord() {
   const {user} =useContext(AuthContext);
   const [beer, setBeer] = useState({});
   const { beerId } = useParams();
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
   const [hover, setHover] = useState(0);
   const navigate = useNavigate();
+
+  function getRating(arr){
+    const valuesArr=arr.map(x=>x.value);
+    const sum = valuesArr.reduce(function(a, b){
+        return a + b;
+        }, 0);
+    const average= Math.round(sum/arr.length);
+    return average;        
+}
 
   useEffect(() => {
       async function fetchData(){
     let beerResult = await beerService.getOne(beerId);
     setBeer(beerResult);
+    setRating(getRating(beerResult.rating))
       }
       fetchData()
 }, [beerId]);
@@ -47,12 +57,42 @@ const onBeerUpdate = (e) => {
   updatedBeer.type=type;
   updatedBeer.country=country;
   updatedBeer.alcVol=alcVol;
-  updatedBeer.rating.push({userRated:user._id, value:rating});
+
+  //update rating
+  const indexOfRecordToUpdate=beer.rating.findIndex(x=>x.userRated==user._id);
+  const newRating={userRated:user._id,value:rating}
+  const copyRating=[...beer.rating]
+  const removedOld=copyRating.splice(indexOfRecordToUpdate,1)
+  copyRating.push(newRating);
+  updatedBeer.rating=copyRating;
     
   beerService.updateBeer(beerId, updatedBeer)
     .then(result=>console.log(result))
      navigate('/');    
 } 
+
+const ratingButtons=(
+  <div className={styles.rating}>
+  {[...Array(5)].map((star, index) => {
+  index += 1;
+  return (
+  <button 
+  type="button"
+  key={index}
+  className={  index <= (hover || rating) ? styles.on : styles.off }
+  onClick={function(){
+  setRating(index);
+  }}
+  onMouseEnter={() => setHover(index)}
+  onMouseLeave={() => setHover(rating)}
+  >
+  <span>&#127866;</span>
+  </button>
+  );
+  })}
+
+</div>
+)
 
     return (
   <>
@@ -84,25 +124,7 @@ const onBeerUpdate = (e) => {
       <input className={styles.createInput} type="number" name="alcoholicContent" id="alcoholicContent" min="0" step="0.1" max="10"
       defaultValue={beer.alcVol}></input>
 
-      <div className={styles.rating}>
-        {[...Array(5)].map((star, index) => {
-        index += 1;
-        return (
-        <button 
-        type="button"
-        key={index}
-        className={  index <= (hover || rating) ? styles.on : styles.off }
-        onClick={function(){
-        setRating(index);
-        }}
-        onMouseEnter={() => setHover(index)}
-        onMouseLeave={() => setHover(rating)}
-        >
-        <span>&#127866;</span>
-        </button>
-        );
-        })}
-      </div>
+      {ratingButtons}
 
       <button type="submit" id="submitBeer">Запази</button>
     </form>     

@@ -55,15 +55,15 @@ navigate('/');
 async function onUserRating(r){
     let updatedBeer=Object.assign(beer); 
     const indexOfRecordToUpdate=beer.rating.findIndex(x=>x.userRated==user._id);
-    console.log('indexToUpdate', indexOfRecordToUpdate)
     const newRating={userRated:user._id,value:r}
-    console.log(newRating)
+    
     if (indexOfRecordToUpdate<0){
      updatedBeer.rating.push(newRating);    
     } else {
-       const removedOld=beer.rating.splice(indexOfRecordToUpdate,1)
-       beer.rating.push(newRating);
-       updatedBeer.rating=beer.rating;
+       const copyRating=[...beer.rating]
+       const removedOld=copyRating.splice(indexOfRecordToUpdate,1)
+       copyRating.push(newRating);
+       updatedBeer.rating=copyRating;
     }
     
     

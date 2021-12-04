@@ -57,11 +57,10 @@ function App() {
             <Route element={<RequireAuth />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/create" element={<CreateRecord/>} />
-          </Route>
-           
-           
             <Route path="/update/:beerId" element={<UpdateRecord/>} />
-            <Route path="/beers/:beerId" element={<BeerDetails/>} />
+          </Route>         
+           
+          <Route path="/beers/:beerId" element={<BeerDetails/>} />
           </Routes>
            
     </div>

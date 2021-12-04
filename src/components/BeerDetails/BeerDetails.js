@@ -39,6 +39,7 @@ const BeerDetails = () => {
 useEffect(() => {
    beerService.getOne(beerId)
     .then(beerResult=>{
+        console.log(beerResult.rating)
        setBeer(beerResult)
        setUsersRated(getUsersThatRated(beerResult.rating)) 
        setRating(getRating(beerResult.rating))
@@ -52,8 +53,20 @@ navigate('/');
 }
 
 async function onUserRating(r){
-    let updatedBeer=Object.assign(beer);   
-    updatedBeer.rating.push({userRated:user._id, value:r}); 
+    let updatedBeer=Object.assign(beer); 
+    const indexOfRecordToUpdate=beer.rating.findIndex(x=>x.userRated==user._id);
+    console.log('indexToUpdate', indexOfRecordToUpdate)
+    const newRating={userRated:user._id,value:r}
+    console.log(newRating)
+    if (indexOfRecordToUpdate<0){
+     updatedBeer.rating.push(newRating);    
+    } else {
+       const removedOld=beer.rating.splice(indexOfRecordToUpdate,1)
+       beer.rating.push(newRating);
+       updatedBeer.rating=beer.rating;
+    }
+    
+    
     const result= await beerService.updateBeer(beerId, updatedBeer);
     setUserRating(r);  
 }
@@ -70,13 +83,12 @@ const ownerButtons=(<>
 <button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
 </>)
 
-//check if current user already rated
-const userAlreadyRated=usersRated.includes(user._id);
+
 
 //check if current user can rate
 
 let userCanRate=user.hasOwnProperty('_id');
-if (user._id==beer.ownerId || userAlreadyRated){
+if (user._id==beer.ownerId){
     userCanRate=false;
 }
 

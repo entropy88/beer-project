@@ -24,11 +24,19 @@ function UpdateRecord() {
         }, 0);
     const average= Math.round(sum/arr.length);
     return average;        
-}
+  }
+
+  function checkIfUserIsOwner(ownerId){
+    if (!user._id===ownerId){
+     return navigate('/')
+    }
+  }
+  
 
   useEffect(() => {
       async function fetchData(){
     let beerResult = await beerService.getOne(beerId);
+    checkIfUserIsOwner(beerResult.ownerId);
     setBeer(beerResult);
     setRating(getRating(beerResult.rating))
       }

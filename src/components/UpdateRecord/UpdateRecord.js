@@ -18,7 +18,6 @@ function UpdateRecord() {
   const [rating, setRating] = useState(1);
   const [hover, setHover] = useState(0);
   const [errors, setErrors]=useState([]); 
-  const [hasErrors, setHasErrors]=useState(false);
   const navigate = useNavigate();
 
   function getRating(arr){
@@ -72,20 +71,16 @@ const onBeerUpdate = (e) => {
   copyRating.push(newRating);
   updatedBeer.rating=copyRating;
 
-  if(recordFormValidation(updatedBeer).length>0){
-    setHasErrors(true);
-  } else {
-    setHasErrors(false)
-  }
+  const validationErrors=(recordFormValidation(updatedBeer));
   setErrors([...recordFormValidation(updatedBeer)]);
     
 //  WHY DO YOU TRIGGER BEFORE STATE IS UPDATED, AAAARGH
-if (hasErrors){       
+if (validationErrors.length<1){       
   beerService.updateBeer(beerId, updatedBeer)
     .then(result=>console.log(result))
      navigate('/');    
   } else{
-    console.log(errors)
+    console.log(validationErrors)
   }
 }
 

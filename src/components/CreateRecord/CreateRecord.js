@@ -4,13 +4,13 @@ import * as beerService from "../../services/beer";
 import { useContext } from "react/cjs/react.development";
 import {AuthContext} from "../../Contexts/AuthContext";
 
-import recordFormValidation  from "../../utils/recordFormVlidation"
+import recordFormValidation  from "../../utils/recordFormVlidation";
 
 import Error from "../Error/Error";
 import { useNavigate } from 'react-router-dom';
 
-function CreateRecord() {
- 
+function CreateRecord() { 
+
   const navigate = useNavigate();
   const {user} =useContext(AuthContext);  
   const [rating, setRating] = useState(0);
@@ -36,11 +36,12 @@ function CreateRecord() {
       alcVol,     
       rating: [{userRated:user._id, value:rating}]     
   }  
+
+  const validationErrors=(recordFormValidation(newRecord));
   setErrors([...recordFormValidation(newRecord)]);
   console.log(errors)
     
-    if (errors.length<1){    
-
+    if (validationErrors.length<1){   
     beerService.create(newRecord)
         .then(result => { 
           navigate('/');     

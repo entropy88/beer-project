@@ -39,7 +39,6 @@ const BeerDetails = () => {
 useEffect(() => {
    beerService.getOne(beerId)
     .then(beerResult=>{
-        console.log(beerResult.rating)
        setBeer(beerResult)
        setUsersRated(getUsersThatRated(beerResult.rating)) 
        setRating(getRating(beerResult.rating))

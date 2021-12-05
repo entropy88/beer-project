@@ -4,6 +4,8 @@ import * as beerService from "../../services/beer";
 import { useContext } from "react/cjs/react.development";
 import {AuthContext} from "../../Contexts/AuthContext";
 
+import recordFormValidation  from "../../utils/recordFormVlidation"
+
 import Error from "../Error/Error";
 import { useNavigate } from 'react-router-dom';
 
@@ -11,22 +13,9 @@ function CreateRecord() {
  
   const navigate = useNavigate();
   const {user} =useContext(AuthContext);  
-  const [errors,setErrors]=useState([])
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-
-  
-  function onErrors(err){
-    setErrors(oldArray => [...oldArray, err]);
-    const uniqueErrors=[];
-    errors.forEach(e=>{
-      if (!uniqueErrors.includes(e)){
-        uniqueErrors.push(e)
-      }
-      setErrors([...uniqueErrors]);
-    })
-  }
-
+  const [errors, setErrors]=useState([]); 
 
   const onBeerCreate = (e) => {
     e.preventDefault();
@@ -38,46 +27,25 @@ function CreateRecord() {
     let country=formData.get('beerOrigin');
     let alcVol=formData.get('alcoholicContent');
 
-   
-    if (title.length<3){
-      onErrors("Марката трябва да е поне 3 символа!");
-    } else {
-      console.log('title is fine')
-    }
-
-    const urlPattern=new RegExp (/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/ig);
-    console.log(urlPattern.test(imgUrl))
-    if (!urlPattern.test(imgUrl)){
-      onErrors("Невалиден линк!");     
-    }
-
-    if (!alcVol ||Number(alcVol)<0){
-      onErrors("Невалидно алкохолно съдържание!");    
-    }
-
-    if(rating<1){
-     onErrors("Моля дайте първоначален рейтинг!");
-    }
-    // console.log(errors)
-    
-    if (errors.length<1){    
-
-    beerService.create({
+  const newRecord={  
       ownerId:user._id,
       title,      
       imgUrl,
       type,
       country,
       alcVol,     
-      rating: [{userRated:user._id, value:rating}]
-      })
+      rating: [{userRated:user._id, value:rating}]     
+  }  
+  setErrors([...recordFormValidation(newRecord)]);
+  console.log(errors)
+    
+    if (errors.length<1){    
+
+    beerService.create(newRecord)
         .then(result => { 
           navigate('/');     
         })
-      } else {
-        console.log(errors)
-
-      }
+      } 
     }
 
     return (
@@ -125,13 +93,10 @@ function CreateRecord() {
   
       </div>
       {errors.length>0?<Error errors={errors}/>:""}
-
       <button type="submit" id="submitBeer">Запази</button>
 
     </form>
-
-       {/* {errors.length>0?<Error errors={errors}/>:<p>it's all good</p>} */}
-      </>
+    </>
     );
   }
   

@@ -75,7 +75,7 @@ const onBeerUpdate = (e) => {
   setErrors([...recordFormValidation(updatedBeer)]);
   console.log(errors)
   
-
+//  WHY DO YOU TRIGGER BEFORE STATE IS UPDATED, AAAARGH
 if (errors.length<1){   
     
   beerService.updateBeer(beerId, updatedBeer)

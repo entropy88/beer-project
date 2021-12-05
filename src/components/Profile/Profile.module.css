@@ -12,6 +12,7 @@
 
 .beersContainer{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding:16px;
     background-color: #F97C2A;  

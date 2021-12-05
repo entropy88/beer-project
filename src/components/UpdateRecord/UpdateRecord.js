@@ -5,6 +5,8 @@ import { useContext } from "react/cjs/react.development";
 import {AuthContext} from "../../Contexts/AuthContext";
 import * as beerService from "../../services/beer"; 
 
+import recordFormValidation  from "../../utils/recordFormVlidation";
+
 import Error from "../Error/Error";
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +17,7 @@ function UpdateRecord() {
   const { beerId } = useParams();
   const [rating, setRating] = useState(1);
   const [hover, setHover] = useState(0);
+  const [errors, setErrors]=useState([]); 
   const navigate = useNavigate();
 
   function getRating(arr){
@@ -30,11 +33,10 @@ function UpdateRecord() {
     if (!user._id===ownerId){
      return navigate('/')
     }
-  }
-  
+  }  
 
   useEffect(() => {
-      async function fetchData(){
+   async function fetchData(){
     let beerResult = await beerService.getOne(beerId);
     checkIfUserIsOwner(beerResult.ownerId);
     setBeer(beerResult);
@@ -54,11 +56,6 @@ const onBeerUpdate = (e) => {
   let country=formData.get('beerOrigin');
   let alcVol=formData.get('alcoholicContent');  
 
-    // const urlPattern=new RegExp (/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/);
-    // if (!urlPattern.test(imgUrl)){
-    //   console.log("Please use valid url")
-    // }
-
   const updatedBeer=Object.assign(beer);
   updatedBeer.title=title;
   updatedBeer.imgUrl=imgUrl;
@@ -73,11 +70,19 @@ const onBeerUpdate = (e) => {
   const removedOld=copyRating.splice(indexOfRecordToUpdate,1)
   copyRating.push(newRating);
   updatedBeer.rating=copyRating;
+
+  console.log(recordFormValidation(updatedBeer))
+  setErrors([...recordFormValidation(updatedBeer)]);
+  console.log(errors)
+  
+
+if (errors.length<1){   
     
   beerService.updateBeer(beerId, updatedBeer)
     .then(result=>console.log(result))
      navigate('/');    
-} 
+  } 
+}
 
 const ratingButtons=(
   <div className={styles.rating}>
@@ -133,7 +138,7 @@ const ratingButtons=(
       defaultValue={beer.alcVol}></input>
 
       {ratingButtons}
-
+      {errors.length>0?<Error errors={errors}/>:""}
       <button type="submit" id="submitBeer">Запази</button>
     </form>     
   </>

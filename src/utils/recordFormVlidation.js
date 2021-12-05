@@ -9,11 +9,11 @@ function recordFormValidation(record){
         errors.push("Невалиден линк!")
     }
 
-    console.log(record.rating[0].value);
-
-    if(!record.rating || record.rating[0].value<1){
-        errors.push("Невалиден рейтинг!")
-    }
+    record.rating.forEach(r => {
+        if (r.value<1){
+         errors.push("Невалиден рейтинг!")   
+        }
+    });
 
     if(!record.alcVol || record.alcVol<=0){
         errors.push("Невалидно алкохолно съдържание!")

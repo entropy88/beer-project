@@ -26,11 +26,11 @@ import Error from "../Error/Error";
       login(data);
       navigate('/')
     } else {
-      setError(oldArray => [...oldArray, "Грешен потребител или парола!"]);    
+      setError(['Грешен потребител или парола!']);    
      }
     })
 .catch(err=>{
-  setError(oldArray => [...oldArray, "Грешен потребител или парола!"]);    
+  setError(['Грешен потребител или парола!']);        
   })
  }
 

@@ -5,10 +5,13 @@ import styles from "./Register.module.css"
 import {Link} from "react-router-dom"
 import {create, getUser} from "../../services/auth";
 import { useNavigate } from 'react-router-dom';
+import registerFormValidation  from "../../utils/registerFormValidation";
+import Error from "../Error/Error";
 
 function Register() {
   const [userExists, setUserExists]=useState(false);
-  const {login}=useContext(AuthContext)
+  const {login}=useContext(AuthContext);
+  const [errors, setErrors]=useState([]); 
   const navigate = useNavigate();
 
   async function onUserCreate(e){
@@ -22,19 +25,20 @@ function Register() {
     const today = new Date();
     const registrationDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-    if(password!==repeatPassword){
-      alert ('passwords don\`t math');
-    }
-
     const newUser={
       username,
       email,
-      password,
+      password,      
       registrationDate
     }
 
-    //CHECK IF USER ALREADY EXISTS
+    const validationErrors=registerFormValidation(newUser,repeatPassword);
+    setErrors([...validationErrors]);
 
+    //check if there are errors
+    if (validationErrors.length<1){
+
+    //CHECK IF USER ALREADY EXISTS
     getUser(username)
     .then((data)=>{
       if(data){      
@@ -44,15 +48,18 @@ function Register() {
     .catch(err=>{
      console.log('dont mind me, just caching an error')      
     })
-
+    if (userExists){
     create(newUser)
     .then(data=>{
      setUserExists(false);
      login(data);
      navigate('/')
     })
+  }
 
   }
+
+}
   
   return (
     <div className={styles.form}>
@@ -80,7 +87,7 @@ function Register() {
       <label htmlFor="email" className={styles.placeholder}>Email</label>
         <input id="email" type="email" name="email" placeholder=" " />      
       </div>
-
+      {errors.length>0?<Error errors={errors}/>:""}
       <button className={styles.submitButton} type="submit" >Регистрация</button>
 
       </form>

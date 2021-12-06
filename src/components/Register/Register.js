@@ -38,22 +38,32 @@ function Register() {
     //check if there are errors
     if (validationErrors.length<1){
 
+      //set state is too slow, therefore using ordinary variable
+    let existingUser=false;
+
     //CHECK IF USER ALREADY EXISTS
-    getUser(username)
+   await getUser(username)
     .then((data)=>{
-      if(data){      
-      return setUserExists(true);
-     }
-     })
+      if(data){            
+        existingUser=true;        
+        setUserExists(true);        
+        return;
+       }
+      })
     .catch(err=>{
-     console.log('dont mind me, just caching an error')      
+     console.log('dont mind me, just caching an error');
+     console.log(err)      
     })
-    if (userExists){
-    create(newUser)
-    .then(data=>{
-     setUserExists(false);
-     login(data);
-     navigate('/')
+
+
+    if (existingUser==false){
+      console.log(existingUser)
+      console.log('no such user, proceed')
+      await create(newUser)
+      .then(data=>{
+      setUserExists(false);
+      login(data);
+      navigate('/')
     })
   }
 

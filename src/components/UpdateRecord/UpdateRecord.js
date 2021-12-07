@@ -73,6 +73,8 @@ const onBeerUpdate = (e) => {
 
   const validationErrors=(recordFormValidation(updatedBeer));
   setErrors([...recordFormValidation(updatedBeer)]);
+  console.log(validationErrors)
+  console.log(errors)
     
 //  WHY DO YOU TRIGGER BEFORE STATE IS UPDATED, AAAARGH
 if (validationErrors.length<1){       

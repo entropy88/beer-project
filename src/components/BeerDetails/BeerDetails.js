@@ -5,8 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import styles from "./BeerDetails.module.css";
 
+//modal stuff
+import Button from 'react-bootstrap/Button';
+import DeleteModal from '../DeleteModal/DeleteModal';
+
 import { useContext } from "react/cjs/react.development";
 import {AuthContext} from "../../Contexts/AuthContext";
+
+
+
 
 const BeerDetails = () => {
     const [beer, setBeer] = useState({});
@@ -15,7 +22,8 @@ const BeerDetails = () => {
     const [usersRated, setUsersRated] =useState([]);
     const [hover, setHover] = useState(0);
     const { beerId } = useParams();
-
+    //modal stuff
+    const [modalShow, setModalShow] = useState(false);
     const {user} =useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -79,7 +87,8 @@ const staticRating=(
 
 const ownerButtons=(<>
 <button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
-<button onClick={()=>onBeerDelete(beerId)}>Изтрий</button>
+{/* <button onClick={()=>onBeerDelete(beerId)}>Изтрий</button> */}
+<button onClick={() => setModalShow(true)}>Изтрий</button>
 </>)
 
 
@@ -120,6 +129,21 @@ return (
         <div className={styles.beerWrapper} >
         <article className={styles.imgWrapper}> <img src={beer.imgUrl}></img></article>
         <article className={styles.beerContent}>
+
+        <DeleteModal
+        show={modalShow}
+        onHide={function () {
+            setModalShow(false);           
+                }
+            }
+
+        deleteClicked={function () {
+            setModalShow(false);
+            onBeerDelete(beerId);
+                }
+            }
+        />
+
         <h3>{beer.title}</h3>
             <p className={styles.description}>Произход: {beer.country}</p>     
             <p className={styles.description}>Тип: {beer.type}</p>    
@@ -133,6 +157,8 @@ return (
            
         </article>
         </div>
+
+    
     </section>
     );
 }

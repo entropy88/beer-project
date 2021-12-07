@@ -18,8 +18,8 @@ export default function Navigation() {
   );
   const userLinks=(
     <>  
-    <li><Link to="/profile">Профил на {user.username}</Link></li>
     <li><Link to="/create">Добави бира</Link></li> 
+    <li><Link to="/profile">Профил на {user.username}</Link></li>
     <li> <Link to="#" onClick={()=>logout()}>Изход</Link></li>
     </>
   );
@@ -29,7 +29,7 @@ export default function Navigation() {
         <nav>   
           <article className={styles.logo}>
           <img src="Beer-icon.png"  className="headerImg" alt="beer"></img>
-          <h1>Бирометър</h1>
+          {/* <h1>Бирометър</h1> */}
           </article>     
     
             <ul className={styles.topNav}>

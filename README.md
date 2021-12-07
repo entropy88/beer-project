@@ -5,24 +5,25 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Structure
 The project consists of 7 main components:
 ### Бири (Catalogue)/Home
-accessible to both authenticated users and guests
+Accessible to both authenticated users and guests;
 ### Детайли /Details
-accessible to both authenticated users and guests, but only authenticated users are allowed to rate
+Accessible to both authenticated users and guests, but only authenticated users are allowed to rate;
 ### Вход /Login
 ### Регистрация /Register
 ### Профил /Profile
-available to authenticated users only. Hold information about the user and the beers he has created
+Available to authenticated users only. Holds information about the beers created by the user
 ### Добави бира /CreateRecord
-available to authenticated users only
+Available to authenticated users only;
 ### UpdateRecord
-available to authentucated users, creators of current record
+Available to authentucated users, creators of current record;
 ### Other components:
--Navigation
--Error component for visualisation of errors
+Navigation;
+Error component for visualisation of errors;
+Delete modal implemented with React-bootstrap;
 
 ## Routing
-Implemented client-side routing with react-router-dom v.6
-Implemented route-guards via Nested routes
+Implemented client-side routing with react-router-dom v.6;
+Implemented route-guards via Nested routes;
 
 ## State management:
 Used Context API
@@ -36,7 +37,6 @@ Each component has its own CSS file
 
 
 ## Backend:
-
 Custom Node Express Rest service available at https://github.com/entropy88/AngularGamblingBackEnd
 
 ## Available Scripts

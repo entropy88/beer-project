@@ -5,6 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import styles from "./BeerDetails.module.css";
 
+//toast stuff
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CustomToast from '../../common/CustomToast';
+
+
 //modal stuff
 import Button from 'react-bootstrap/Button';
 import DeleteModal from '../DeleteModal/DeleteModal';
@@ -12,8 +18,7 @@ import DeleteModal from '../DeleteModal/DeleteModal';
 import { useContext } from "react/cjs/react.development";
 import {AuthContext} from "../../Contexts/AuthContext";
 
-
-
+toast.configure();
 
 const BeerDetails = () => {
     const [beer, setBeer] = useState({});
@@ -43,7 +48,7 @@ const BeerDetails = () => {
         return average;        
     }
    
-
+//get beer
 useEffect(() => {
    beerService.getOne(beerId)
     .then(beerResult=>{
@@ -59,6 +64,16 @@ beerService.removeBeer(id);
 navigate('/');
 }
 
+//toast stuff
+const notify = () => toast(<CustomToast/>,{
+    position:toast.POSITION.BOTTOM_CENTER,
+    closeButton: false,
+    theme:'colored',
+    bodyStyle:{     
+        color:"#F97C2A"
+    }
+});
+
 async function onUserRating(r){
     let updatedBeer=Object.assign(beer); 
     const indexOfRecordToUpdate=beer.rating.findIndex(x=>x.userRated==user._id);
@@ -71,6 +86,7 @@ async function onUserRating(r){
        const removedOld=copyRating.splice(indexOfRecordToUpdate,1)
        copyRating.push(newRating);
        updatedBeer.rating=copyRating;
+       notify();
     }
     
     
@@ -92,9 +108,7 @@ const ownerButtons=(<>
 </>)
 
 
-
 //check if current user can rate
-
 let userCanRate=user.hasOwnProperty('_id');
 if (user._id==beer.ownerId){
     userCanRate=false;
@@ -123,6 +137,7 @@ const ratingButtons=(
 
   </div>
 )
+
     
 return (
     <section id="details-page" className={styles.details}>     

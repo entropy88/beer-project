@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useContext } from "react/cjs/react.development";
 import {AuthContext} from "../../Contexts/AuthContext";
 import {getUser} from "../../services/auth";
-import {getAll} from "../../services/beer";
+import {getAll, getAllByUser} from "../../services/beer";
 import {Link} from 'react-router-dom';
 import BeerCard from '../BeerCard/BeerCard';
 
@@ -21,7 +21,7 @@ function Profile() {
   },[]);
  
   useEffect(() => {        
-    getAll()
+    getAllByUser(user._id)
         .then(result => {
         setBeers(result.filter(x=>x.ownerId==user._id))
         })

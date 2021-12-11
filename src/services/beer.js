@@ -7,6 +7,12 @@ export function getAll() {
         .then(res => res.json())
 }
 
+export function getAllByUser(userId) {
+    return fetch(`${baseUrl}/get-beers`)
+        .then(res => res.json())
+        .then(filtered=>filtered.filter(r=>r.ownerId==userId))
+}
+
 export const getOne = (id) => fetch(`${baseUrl}/get-beer/${id}`).then(res => res.json());
 
 export const create = async (beerData) => {

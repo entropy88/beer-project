@@ -23,7 +23,7 @@ function Profile() {
   useEffect(() => {        
     getAllByUser(user._id)
         .then(result => {
-        setBeers(result.filter(x=>x.ownerId==user._id))
+        setBeers(result)
         })
   }, []);
 

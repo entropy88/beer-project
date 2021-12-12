@@ -19,19 +19,17 @@ const LazyProfile=React.lazy(()=> import('./components/Profile/Profile'))
 function App() {
   const [user, setUser] = useState({});
 
-  const login = (authData) => {
-   
+  const login = (authData) => {   
     const middleUser={
       _id:authData._id,
       username:authData.username  
     }
-     setUser(Object.assign(middleUser));
-    console.log(user)
+    setUser(Object.assign(middleUser));
+    // console.log(user)
   }
 
   const logout = () => {
-     setUser({});  
-   
+     setUser({});     
   };
 
   function RequireAuth() {   
@@ -56,12 +54,12 @@ function App() {
 
         <Routes>
          
-            <Route path="/*" element={<Home/>} />
-            <Route path="/login" element={<Login/>} />            
-            <Route path="/register" element={<Register/>} />
-
+          <Route path="/*" element={<Home/>} />
+          <Route path="/login" element={<Login/>} />            
+          <Route path="/register" element={<Register/>} />
           
-            <Route element={<RequireAuth />}>       
+          {/* protected routes */}
+          <Route element={<RequireAuth />}>       
              
             <Route path="/profile" element={
               <React.Suspense fallback={<LoadingSlowly/>}>
@@ -70,9 +68,9 @@ function App() {
             } />
           
             <Route path="/create" element={<CreateRecord/>} />
-            <Route path="/update/:beerId" element={<UpdateRecord/>} />            
-            </Route>     
-           
+            <Route path="/update/:beerId" element={<UpdateRecord/>} />   
+
+          </Route>                
            
           <Route path="/beers/:beerId" element={<BeerDetails/>} />
           </Routes>

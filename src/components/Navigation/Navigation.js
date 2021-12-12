@@ -29,7 +29,6 @@ export default function Navigation() {
         <nav>   
           <article className={styles.logo}>
           <img src="Beer-icon.png"  className="headerImg" alt="beer"></img>
-          {/* <h1>Бирометър</h1> */}
           </article>     
     
             <ul className={styles.topNav}>

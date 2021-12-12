@@ -35,6 +35,9 @@ Errors are displayed by separated Error component
 ## Styling
 Each component has its own CSS file
 
+## Optimization
+Used Lazy Loading with Suspense of the Profile component
+
 
 ## Backend:
 Custom Node Express Rest service available at https://github.com/entropy88/AngularGamblingBackEnd

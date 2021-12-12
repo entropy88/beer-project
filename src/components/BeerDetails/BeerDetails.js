@@ -8,7 +8,7 @@ import styles from "./BeerDetails.module.css";
 //toast stuff
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CustomToast from '../../common/CustomToast';
+import CustomToast from '../../common/CustomToast/CustomToast';
 
 
 //modal stuff

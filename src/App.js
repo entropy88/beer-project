@@ -12,6 +12,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import BeerDetails from './components/BeerDetails/BeerDetails';
 import UpdateRecord from './components/UpdateRecord/UpdateRecord';
+import LoadingSlowly from './common/LoadingSlowly/LoadingSlowly';
 
 const LazyProfile=React.lazy(()=> import('./components/Profile/Profile'))
 
@@ -63,7 +64,7 @@ function App() {
             <Route element={<RequireAuth />}>       
              
             <Route path="/profile" element={
-              <React.Suspense fallback='LOADING YOUR STUFF'>
+              <React.Suspense fallback={<LoadingSlowly/>}>
                 <LazyProfile />
               </React.Suspense>
             } />

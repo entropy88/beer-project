@@ -4,7 +4,7 @@ function LoadingSlowly() {
    
     return (
     <>
-   <div>
+   <div className={styles.turtleWrapper}>
    <img src="../../images/turtle.gif"></img>
        </div>
     </>     

@@ -20,6 +20,7 @@ Available to authentucated users, creators of current record;
 Navigation;
 Error component for visualisation of errors;
 Delete modal implemented with React-bootstrap;
+LoadingSlowly component used as Suspense fallback;
 
 ## Routing
 Implemented client-side routing with react-router-dom v.6;

@@ -108,6 +108,8 @@ const ratingButtons=(
 
 </div>
 )
+  const countries=["България", "Внос"];
+  const types=["Тъмна", "Светла","Вайс"];
 
     return (
   <>
@@ -121,18 +123,14 @@ const ratingButtons=(
        defaultValue={beer.imgUrl}></input>
 
       <label className={styles.createLabel} htmlFor="beerTypes">Тип:</label>
-      <select className={styles.createSelect} name="beerTypes" id="beerTypes"
-      defaultValue={beer.type}>
-        <option value="Тъмна">Тъмна</option>
-        <option value="Светла">Светла</option>
-        <option value="Вайс">Вайс</option>
+      <select className={styles.createSelect} name="beerTypes" id="beerTypes">
+      {types.map(c=><option value={c} selected={beer.type==c}>{c}</option>)}
+      
        </select> 
 
       <label className={styles.createLabel} htmlFor="beerOrigin">Произход:</label>
-      <select className={styles.createSelect} name="beerOrigin" id="beerOrigin"
-      defaultValue={beer.country}>
-        <option value="България">България</option>
-        <option value="Внос">Внос</option>
+      <select className={styles.createSelect} name="beerOrigin" id="beerOrigin">
+      {countries.map(c=><option value={c} selected={beer.country==c}>{c}</option>)}
       </select> 
 
       <label className={styles.createLabel} htmlFor="alcoholicContent">Алкохолно съдържание:</label>

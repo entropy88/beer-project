@@ -7,6 +7,7 @@ import BeerCard from '../BeerCard/BeerCard';
 
 function Home() {
 
+ 
   const [beers, setBeers] = useState([]);
     
     useEffect(() => {        
@@ -30,9 +31,25 @@ function Home() {
       beer.averageRating=averageRating;
       return beer;
     }      
+
+    function sortByName(){
+      const sortedByName=beers.sort((a,b)=> a.title.localeCompare(b.title));
+      setBeers([...sortedByName]);  
+    }
+
+    function sortByHighestRanking(){
+      const sortedByRank=beers.sort((a,b)=>b.averageRating-a.averageRating);
+      setBeers([...sortedByRank]);    
+    }
+
           
     return (
     <> 
+    <div className={styles.sortingButtons}>
+    <button title="сортирай по азбучен ред" onClick={sortByName}>А-Я ▲</button>
+    <button title="сортирай по рейтинг" onClick={sortByHighestRanking}>&#127866;▼</button>
+    </div>
+
     <div className={styles.beerContainer}>     
     { beers.length > 0 
                 ? beers.map(x => <BeerCard key={x._id} beer={x}  />)

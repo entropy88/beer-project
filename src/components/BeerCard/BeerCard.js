@@ -2,12 +2,6 @@ import styles from "./BeerCard.module.css";
 import {Link} from 'react-router-dom';
 
 function BeerCard({beer}) {
-  const valuesArr=beer.rating.map(x=>x.value);
-  const sum = valuesArr.reduce(function(a, b){
-  return a + b;
-  }, 0);  
-
-  const rating=Math.round(sum/valuesArr.length);
   
   return (
     <>
@@ -15,7 +9,7 @@ function BeerCard({beer}) {
      <p className={styles.beerTitle}>{beer.title}</p>
      <div className={styles.imgWrapper}> <img src={beer.imgUrl}></img></div>
      <p className={styles.description}>Тип: {beer.type}</p>
-     <p>{[...Array(rating)].map((e, i) => {
+     <p>{[...Array(beer.averageRating)].map((e, i) => {
       return <span key={i}>&#127866;</span>
       })}</p>   
      

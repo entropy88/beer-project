@@ -46,8 +46,8 @@ function Home() {
     return (
     <> 
     <div className={styles.sortingButtons}>
-    <button title="сортирай по азбучен ред" onClick={sortByName}>А-Я ▲</button>
-    <button title="сортирай по рейтинг" onClick={sortByHighestRanking}>&#127866;▼</button>
+    <button title="сортирай по азбучен ред" onClick={sortByName}>А-Я ▼</button>
+    <button title="сортирай по рейтинг" onClick={sortByHighestRanking}>&#127866; ▼</button>
     </div>
 
     <div className={styles.beerContainer}>     

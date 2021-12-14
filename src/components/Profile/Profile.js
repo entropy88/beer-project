@@ -23,9 +23,20 @@ function Profile() {
   useEffect(() => {        
     getAllByUser(user._id)
         .then(result => {
-        setBeers(result)
+          const mapped=result.map(beer=>beer.rating=getAverageRating(beer));
+        setBeers(mapped)
         })
   }, []);
+
+  function getAverageRating(beer){
+    const valuesArr=beer.rating.map(x=>x.value);
+    const sum = valuesArr.reduce(function(a, b){
+    return a + b;
+    }, 0);  
+    const averageRating=Math.round(sum/valuesArr.length);
+    beer.averageRating=averageRating;
+    return beer;
+  }     
 
   return (
   <>

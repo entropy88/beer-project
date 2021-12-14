@@ -3,11 +3,13 @@ import styles from "./Home.module.css"
 
 import * as beerService from '../../services/beer';
 import BeerCard from '../BeerCard/BeerCard';
+import LoadingSlowly from '../../common/LoadingSlowly/LoadingSlowly'
 
 
 function Home() {
 
- 
+  //loader
+  const [isLoading, setIsLoading]=useState(true);
   const [beers, setBeers] = useState([]);
     
     useEffect(() => {        
@@ -17,8 +19,9 @@ function Home() {
               const mapped=result.map(beer=>beer.rating=getAverageRating(beer));
               //sort by rating
               const sorted=mapped.sort((a,b)=> b.averageRating-a.averageRating)
-              setBeers(sorted)
-                })
+              setBeers(sorted);
+              setIsLoading(false);         
+              })
           }, []);
  
 
@@ -45,6 +48,8 @@ function Home() {
           
     return (
     <> 
+    {isLoading?<LoadingSlowly/>:
+    <>
     <div className={styles.sortingButtons}>
     <button title="сортирай по азбучен ред" onClick={sortByName}>А-Я ▼</button>
     <button title="сортирай по рейтинг" onClick={sortByHighestRanking}>&#127866; ▼</button>
@@ -56,6 +61,8 @@ function Home() {
                 : <h3>No beers yet</h3>
             }
     </div>  
+    </>
+    }
       </>
     );
   }

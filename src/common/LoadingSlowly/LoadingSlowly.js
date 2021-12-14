@@ -4,10 +4,13 @@ function LoadingSlowly() {
    
     return (
     <>
-   <div className={styles.turtleWrapper}>
-   <img src="../../images/turtle.gif"></img>
-       </div>
-    </>     
+  <div className={styles.wrapper}>
+   <div className={styles.gifWrapper}>
+   <img src="https://commenathletics.com/wp-content/themes/commenathletics/commenathletics/images/loading.gif"></img>
+    </div>
+  </div>      
+    </>   
+      
     );
   }
   

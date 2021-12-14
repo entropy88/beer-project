@@ -1,5 +1,12 @@
-.turtleWrapper{
+.wrapper{
     margin: auto;
-    display: flex;
-    align-items: center;
+    width:30%;
+    display: flex;     
+    height: 80vh;   
+    justify-content: center;
 }
+
+.gifWrapper{
+    align-self: center;
+}
+

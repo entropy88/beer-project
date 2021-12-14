@@ -5,6 +5,10 @@ import * as beerService from '../../services/beer';
 import BeerCard from '../BeerCard/BeerCard';
 import LoadingSlowly from '../../common/LoadingSlowly/LoadingSlowly'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSortAlphaDown } from '@fortawesome/free-solid-svg-icons';
+import { faBeer } from '@fortawesome/free-solid-svg-icons';
+
 
 function Home() {
 
@@ -51,9 +55,12 @@ function Home() {
     {isLoading?<LoadingSlowly/>:
     <>
     <div className={styles.sortingButtons}>
-    <button title="сортирай по азбучен ред" onClick={sortByName}>А-Я ▼</button>
-    <button title="сортирай по рейтинг" onClick={sortByHighestRanking}>&#127866; ▼</button>
+    <button title="сортирай по азбучен ред" onClick={sortByName}><FontAwesomeIcon icon={faSortAlphaDown} /></button>
+   
+    <button title="сортирай по рейтинг" onClick={sortByHighestRanking}><FontAwesomeIcon icon={faBeer} /></button>
     </div>
+
+  
 
     <div className={styles.beerContainer}>     
     { beers.length > 0 

@@ -13,7 +13,9 @@ function BeerCard({beer}) {
       return <span key={i}>&#127866;</span>
       })}</p>   
      
-     <button><Link to={`/beers/${beer._id}`} className="details-button">Детайли</Link></button>
+     {/* <button> */}
+       <Link className={styles.detailsLink} to={`/beers/${beer._id}`}>Детайли</Link>
+       {/* </button> */}
      </article>
      </>
     );

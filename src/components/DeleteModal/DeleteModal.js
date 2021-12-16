@@ -17,7 +17,7 @@ function DeleteModal(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.onHide}>Не</Button>
-          <Button variant="danger" onClick={props.deleteClicked}>Да, изтрий</Button>
+          <Button variant="danger" onClick={props.deleteclicked}>Да, изтрий</Button>
         </Modal.Footer>
       </Modal>
     );

@@ -37,11 +37,11 @@
     margin-bottom: 4px;
 }
 
- button a{
-    color:#FFF897;
+.detailsLink{
     text-decoration: none;
+    color:#F97C2A;
 }
 
-button a:hover{
-    color:#FFF897;   
+.detailsLink:hover{
+    color:#F97C2A;
 }

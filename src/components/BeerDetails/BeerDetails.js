@@ -101,11 +101,12 @@ const staticRating=(
         })}</p>
 )
 
-const ownerButtons=(<>
-<button><Link to={`/update/${beer._id}`} className="details-button">Обнови</Link></button>
-{/* <button onClick={()=>onBeerDelete(beerId)}>Изтрий</button> */}
+const ownerButtons=(
+<div className={styles.ownerButtonsWrapper}>
+<button className={styles.detailsButton}><Link to={`/update/${beer._id}`} >Обнови</Link></button>
 <button onClick={() => setModalShow(true)}>Изтрий</button>
-</>)
+</div>
+)
 
 
 //check if current user can rate
@@ -152,7 +153,7 @@ return (
                 }
             }
 
-        deleteClicked={function () {
+        deleteclicked={function () {
             setModalShow(false);
             onBeerDelete(beerId);
                 }

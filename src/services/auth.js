@@ -1,26 +1,23 @@
-
-
 const baseUrl = 'http://localhost:8000/api';
 
 
-export const getUser = (username) => 
-fetch(`${baseUrl}/get-user/${username}`)
-.then(res => res.json())
-.catch((error) => {
+export const getUser = (username) =>
+  fetch(`${baseUrl}/get-user/${username}`)
+  .then(res => res.json())
+  .catch((error) => {
     console.error('Error:', error);
   });
 
 
 export const create = async (user) => {
-    let response = await fetch(`${baseUrl}/add-user`, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify(user)
-    });
+  let response = await fetch(`${baseUrl}/add-user`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(user)
+  });
 
-    let result = await response.json();
-      return result;
+  let result = await response.json();
+  return result;
 };
-
